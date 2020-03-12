@@ -2,3 +2,4 @@ __pycache__
 nginx/log/*
 .vscode
 *.env
+src/shikin/uwsgi.log
