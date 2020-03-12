@@ -1,0 +1,4 @@
+__pycache__
+nginx/log/*
+.vscode
+*.env

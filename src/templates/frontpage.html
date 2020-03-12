@@ -1,0 +1,54 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row m-5">
+        <div class="col-md-6">
+            <h1 class="h4">公募情報</h1>
+            <ul>
+                <li><a href="{% url 'erad:list' %}?before_closing_date=on">政府系の競争的研究資金（主にe-Radの公募）</a>
+                </li>
+                <li><a href="{% url 'grant:list' %}">新潟大学に郵便やメールで通知のあった助成財団等の公募情報</a></li>
+                </li>
+            </ul>
+            <h1 class="h4 my-5">外部資金への応募にあたって</h1>
+            <h2 class="h5">注意事項1</h2>
+            <p>吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてス
+            </p>
+            <h2 class="h5">注意事項2</h2>
+            <p>吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてス
+            </p>
+            <h2 class="h5">注意事項3</h2>
+            <p>吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてス
+            </p>
+
+        </div>
+        <div class="col-md-6">
+            <h1 class="h4">公募情報（外部リンク）</h1>
+            <h2 class="h5">e-Rad - 府省共通研究開発管理システム</h2>
+            <ul>
+                <li><a href="https://www.e-rad.go.jp/erad/portal/jigyolist/present/present?locale=ja"
+                        target="_blank">公募一覧</a></li>
+            </ul>
+            <h2 class="h5">AMED - 国立研究開発法人日本医療研究開発機構</h2>
+            <ul>
+                <li><a href="https://www.amed.go.jp/search.php" target="_blank">公募情報検索</a></li>
+                <li><a href="https://www.amed.go.jp/koubo/yokoku_index.html" target="_blank">公募予告一覧</a></li>
+                <li><a href="https://www.amed.go.jp/koubo/koubo_index.html" target="_blank">公募情報一覧</a></li>
+                <li><a href="https://www.amed.go.jp/pr/mailmagazine.html" target="_blank">AMEDメール配信サービス</a></li>
+            </ul>
+            <h2 class="h5">JST - 国立研究開発法人科学技術振興機構</h2>
+            <ul>
+                <li><a href="https://www.jst.go.jp/bosyu/bosyu.html" target="_blank">公募情報一覧</a></li>
+                <li><a href="https://www.jst.go.jp/melmaga.html" target="_blank">JSTが発行するメールマガジン</a></li>
+            </ul>
+            <h2 class="h5">NEDO - 国立研究開発法人新エネルギー・産業技術総合開発機構</h2>
+            <ul>
+                <li><a href="https://www.nedo.go.jp/search/?type=koubo" target="_blank">公募情報一覧</a></li>
+                <li><a href="https://www.nedo.go.jp/nedomail/index.html" target="_blank">NEDOメール配信サービス</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
