@@ -1,0 +1,10 @@
+Django==2.2.11
+requests==2.22.0
+beautifulsoup4==4.7.1
+black==19.3b0
+flake8==3.7.9
+django-crispy-forms==1.7.2
+
+# direct install on Dockerfile
+# mysqlclient==1.4.5
+# uwsgi==2.0.18
