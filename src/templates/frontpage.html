@@ -1,30 +1,39 @@
 {% extends "_base.html" %}
+{% load static %}
 
 {% block content %}
 <div class="container-fluid">
-    <div class="row m-5">
+    <div class="row my-3">
+        <div class="col-sm-12">
+            <div class="card my-3">
+                <div class="card-body">
+                    <h5 class="card-title">政府系の競争的研究資金</h5>
+                    <p class="card-text">主にe-Radの公募情報を掲載しています。</p>
+                    <a href="{% url 'erad:list' %}?before_closing_date=on" class="btn btn-primary">公募一覧</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">助成財団等の公募情報</h5>
+                    <p class="card-text">新潟大学に郵便やメールで通知のあったものを掲載しています</p>
+                    <a href="{% url 'grant:list' %}" class="btn btn-primary">公募一覧</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row m-3">
         <div class="col-md-6">
-            <h1 class="h4">公募情報</h1>
-            <ul>
-                <li><a href="{% url 'erad:list' %}?before_closing_date=on">政府系の競争的研究資金（主にe-Radの公募）</a>
-                </li>
-                <li><a href="{% url 'grant:list' %}">新潟大学に郵便やメールで通知のあった助成財団等の公募情報</a></li>
-                </li>
-            </ul>
             <h1 class="h4 my-5">外部資金への応募にあたって</h1>
             <h2 class="h5">注意事項1</h2>
-            <p>吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてス
-            </p>
+            <p>注意事項あれこれ</p>
             <h2 class="h5">注意事項2</h2>
-            <p>吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてス
-            </p>
+            <p>注意事項あれこれ</p>
             <h2 class="h5">注意事項3</h2>
-            <p>吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてス
-            </p>
-
+            <p>注意事項あれこれ</p>
         </div>
         <div class="col-md-6">
-            <h1 class="h4">公募情報（外部リンク）</h1>
+            <h1 class="h4 my-5">公募情報（外部リンク）</h1>
             <h2 class="h5">e-Rad - 府省共通研究開発管理システム</h2>
             <ul>
                 <li><a href="https://www.e-rad.go.jp/erad/portal/jigyolist/present/present?locale=ja"
