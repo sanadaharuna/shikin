@@ -1,14 +1,19 @@
-from django.views.generic import ListView, TemplateViews
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView, TemplateView
 
 from .forms import GrantSearchForm
 from .models import Grant
 
 
 class GrantListView(ListView):
+    paginate_by = 20
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.GET:
             context["search_form"] = GrantSearchForm(self.request.GET)
+            context["foundation"] = self.request.GET.get("foundation")
+            context["grant_name"] = self.request.GET.get("grant_name")
         else:
             context["search_form"] = GrantSearchForm()
         context["cnt"] = context["grant_list"].count()
@@ -28,5 +33,5 @@ class GrantListView(ListView):
         return queryset
 
 
-# class ShikinadminView(TemplateView):
-#     template_name = ".html"
+class ShikinAdminView(LoginRequiredMixin, TemplateView):
+    template_name = "grant/admin.html"

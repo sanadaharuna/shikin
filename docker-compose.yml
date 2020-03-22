@@ -28,6 +28,11 @@ services:
       - django
     restart: always
 
+  cron:
+    build: ./cron
+    container_name: shikin_cron
+    restart: always
+
 networks:
   default:
     external:

@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  cron:
+    build: .
+    container_name: shikin_cron
+
+networks:
+  default:
+    external:
+      name: shared

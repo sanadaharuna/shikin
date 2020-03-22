@@ -133,3 +133,6 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 # django.contrib.humanize - intcomma
 NUMBER_GROUPING = 3
+
+LOGIN_REDIRECT_URL = "/shikin_admin"
+LOGOUT_REDIRECT_URL = "/accounts/login"

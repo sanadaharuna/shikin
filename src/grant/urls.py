@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import GrantListView, 
+from .views import GrantListView
 
 app_name = "grant"
-urlpatterns = [path("", GrantListView.as_view(), name="list"), path("admin")]
+urlpatterns = [path("list", GrantListView.as_view(), name="list")]

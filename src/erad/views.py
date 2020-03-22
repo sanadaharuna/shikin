@@ -10,10 +10,22 @@ from .scraping import get_index
 
 
 class EradListView(ListView):
+    paginate_by = 20
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.GET:
+            # form
             context["search_form"] = ItemSearchForm(self.request.GET)
+            # search keywords
+            context["funding_agency"] = self.request.GET.get("funding_agency")
+            context["call_for_applications"] = self.request.GET.get(
+                "call_for_applications"
+            )
+            if not self.request.GET.get("before_closing_date") == "on":
+                context["before_closing_date"] = ""
+            else:
+                context["before_closing_date"] = "on"
         else:
             context["search_form"] = ItemSearchForm()
         context["cnt"] = context["item_list"].count()
