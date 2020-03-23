@@ -18,10 +18,16 @@ class EradListView(ListView):
             # form
             context["search_form"] = ItemSearchForm(self.request.GET)
             # search keywords
-            context["funding_agency"] = self.request.GET.get("funding_agency")
-            context["call_for_applications"] = self.request.GET.get(
-                "call_for_applications"
-            )
+            if self.request.GET.get("funding_agency") is None:
+                context["funding_agency"] = ""
+            else:
+                context["funding_agency"] = self.request.GET.get("funding_agency")
+            if self.request.GET.get("call_for_applications") is None:
+                context["call_for_applications"] = ""
+            else:
+                context["call_for_applications"] = self.request.GET.get(
+                    "call_for_applications"
+                )
             if not self.request.GET.get("before_closing_date") == "on":
                 context["before_closing_date"] = ""
             else:
@@ -33,17 +39,17 @@ class EradListView(ListView):
 
     def get_queryset(self):
         queryset = Item.objects.all()
-        # 配分機関
+        # funding_agency
         if self.request.GET.get("funding_agency"):
             funding_agency = self.request.GET.get("funding_agency")
             queryset = queryset.filter(funding_agency__contains=funding_agency)
-        # 公募名
+        # call_for_applications
         if self.request.GET.get("call_for_applications"):
             call_for_applications = self.request.GET.get("call_for_applications")
             queryset = queryset.filter(
                 call_for_applications__contains=call_for_applications
             )
-        # 公募中のみ
+        # before_closing_date
         if self.request.GET.get("before_closing_date"):
             before_closing_date = self.request.GET.get("before_closing_date")
             queryset = queryset.filter(closing_date__gte=timezone.now())
