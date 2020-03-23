@@ -7,7 +7,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col">
-            <h1 class="h2 my-3">e-Rad 公募情報 一覧</h1>
+            <h1 class="h2 my-3">政府系の競争的研究資金 一覧</h1>
         </div>
     </div>
     <form method="GET" action="" name="filter_form">
@@ -37,8 +37,8 @@
         検索結果：<span class="h2">{{ paginator.count | intcomma }}</span> 件
     </div>
     <p>初期状態では、公開日の降順で表示します。見出しをクリックして、任意の項目の昇順、降順にソートできます。</p>
-    <table id="fav-table" class="table table-striped table-borderless">
-        <thead>
+    <table id="fav-table" class="table table-hover">
+        <thead class="thead-light">
             <tr>
                 <th width=10%>公開日</th>
                 <th width=17%>配分機関</th>

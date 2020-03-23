@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Grant
+
+
+@admin.register(Grant)
+class GrantAdmin(admin.ModelAdmin):
+    pass

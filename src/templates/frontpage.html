@@ -2,38 +2,52 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid">
+<div class="container">
     <div class="row my-3">
         <div class="col-sm-12">
-            <div class="card my-3">
-                <div class="card-body">
-                    <h5 class="card-title">政府系の競争的研究資金</h5>
-                    <p class="card-text">主にe-Radの公募情報を掲載しています。</p>
-                    <a href="{% url 'erad:list' %}?before_closing_date=on" class="btn btn-primary">公募一覧</a>
-                </div>
+            <div class="card my-3 bg-light">
+                <a href="{% url 'erad:list' %}?before_closing_date=on" class="text-decoration-none">
+                    <div class="card-body">
+                        <h1 class="card-title h2">政府系の競争的研究資金 一覧</h1>
+                        <p class="card-text">主にe-Radの公募情報を掲載しています。</p>
+                    </div>
+                </a>
             </div>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">助成財団等の公募情報</h5>
-                    <p class="card-text">新潟大学に郵便やメールで通知のあったものを掲載しています</p>
-                    <a href="{% url 'grant:list' %}" class="btn btn-primary">公募一覧</a>
-                </div>
+            <div class="card my-3 bg-light">
+                <a href="{% url 'grant:list' %}" class="text-decoration-none">
+                    <div class="card-body">
+                        <h1 class="card-title h2">助成財団等の公募情報 一覧</h1>
+                        <p class="card-text">新潟大学に郵便やメールで通知のあったものを掲載しています</p>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
 
-    <div class="row m-3">
+    <div class="row my-5">
         <div class="col-md-6">
-            <h1 class="h4 my-5">外部資金への応募にあたって</h1>
-            <h2 class="h5">注意事項1</h2>
-            <p>注意事項あれこれ</p>
-            <h2 class="h5">注意事項2</h2>
-            <p>注意事項あれこれ</p>
-            <h2 class="h5">注意事項3</h2>
-            <p>注意事項あれこれ</p>
+            <h1 class="h4 my-3">外部資金の応募にあたって</h1>
+            <h2 class="h5 my-3">注意事項</h2>
+            <ul class="mr-5">
+                <li class="my-4">国・政府系機関の公募で、府省共通研究管理システム (e-Rad) を利用するものについては、 ID、パスワードの発行、及び申請書類の機関承認が必要な場合があります。</li>
+                <li class="my-4">ID、パスワードの発行、申請書類の機関承認等で不明な点がありましたら、各部局の担当係にお問い合わせください。問い合せ先は下記の通りです。 </li>
+                <li class="my-4">各種助成金等に応募する場合は、所属部局の担当係に応募書類の写しを 1 部提出してください。</li>
+                <li class="my-4">e-Radの申請で機関承認が必要な公募の場合は、e-Radの申請期限の<strong> 5 営業日前</strong>までに、部局事務室に申請書を提出してください。</li>
+            </ul>
+
+            <h2 class="h5 my-3">学内問合せ先</h2>
+            <ul class="mr-5">
+                <li>人文社会科学系：</li>
+                <li>自然科学系：</li>
+                <li>医歯学系、病院、脳研：</li>
+                <li>教育・学生支援機構：</li>
+            </ul>
+
+
         </div>
         <div class="col-md-6">
-            <h1 class="h4 my-5">公募情報（外部リンク）</h1>
+            <h1 class="h4 my-3">公募情報（外部リンク）</h1>
+            <p>競争的な研究資金の公募情報が掲載されているサイトを紹介します。</p>
             <h2 class="h5">e-Rad - 府省共通研究開発管理システム</h2>
             <ul>
                 <li><a href="https://www.e-rad.go.jp/erad/portal/jigyolist/present/present?locale=ja"
@@ -55,6 +69,21 @@
             <ul>
                 <li><a href="https://www.nedo.go.jp/search/?type=koubo" target="_blank">公募情報一覧</a></li>
                 <li><a href="https://www.nedo.go.jp/nedomail/index.html" target="_blank">NEDOメール配信サービス</a></li>
+            </ul>
+            <h2 class="h5">公益財団法人 助成財団センター</h2>
+            <ul>
+                <li><a href="http://www.jfc.or.jp/grant-search/c_search.php5" target="_blank">助成プログラム検索</a></li>
+                <li><a href="http://www.jfc.or.jp/grant-search/z_search.php5" target="_blank">団体名による検索</a></li>
+                <li><a href="http://www.jfc.or.jp/grant-search/ap_search.php5" target="_blank">採択課題からの検索</a></li>
+                <li><a href="http://www.jfc.or.jp/grant-search/news/" target="_blank">助成金募集ニュース</a></li>
+                <li><a href="http://www.jfc.or.jp/z-link/link/" target="_blank">助成財団リンク集</a></li>
+            </ul>
+            <h2 class="h5">その他</h2>
+            <ul>
+                <li><a href="https://www.colabory.com/grants/" target="_blank">コラボリー /
+                        Grants 研究助成</a></li>
+                <li><a href="https://www.e-grant.jp/" target="_blank">キーエンス・研究予算情報</a></li>
+                <li><a href="https://info-innovation.jp/" target="_blank">グラント・スクウェア</a></li>
             </ul>
         </div>
     </div>
