@@ -9,7 +9,6 @@ services:
     # tty: True
     volumes:
       - ./src:/code
-      - ./static:/static
     env_file:
       - ./django.env
     expose:
@@ -26,11 +25,6 @@ services:
       - ./src/static:/static
     depends_on:
       - django
-    restart: always
-
-  cron:
-    build: ./cron
-    container_name: shikin_cron
     restart: always
 
 networks:

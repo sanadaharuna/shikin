@@ -1,4 +1,8 @@
+import csv
+import datetime
+
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
 from django.views.generic import ListView, TemplateView
 
 from .forms import GrantSearchForm
@@ -16,7 +20,7 @@ class GrantListView(ListView):
             context["grant_name"] = self.request.GET.get("grant_name")
         else:
             context["search_form"] = GrantSearchForm()
-        context["cnt"] = context["grant_list"].count()
+        # context["cnt"] = context["grant_list"].count()
         return context
 
     def get_queryset(self):
@@ -31,6 +35,28 @@ class GrantListView(ListView):
             queryset = queryset.filter(grant_name__contains=grant_name)
         queryset = queryset.order_by("acceptance_date").reverse()
         return queryset
+
+
+def export_csv(request):
+    response = HttpResponse(content_type="text/csv; charset=cp932")
+    filename = "grant_export_" + datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    response["Content-Disposition"] = "attachment; filename=" + filename + ".csv"
+
+    writer = csv.writer(response)
+    writer.writerow(["整理番号", "データ登録日", "財団等の名称", "公募名", "公募URL", "本部での取りまとめの有無", "備考"])
+    grant_list = Grant.objects.all()
+    for grant in grant_list:
+        row = [
+            grant.id,
+            grant.acceptance_date,
+            grant.foundation,
+            grant.grant_name,
+            grant.url,
+            grant.arrange,
+            grant.remarks,
+        ]
+        writer.writerow(row)
+    return response
 
 
 class ShikinAdminView(LoginRequiredMixin, TemplateView):

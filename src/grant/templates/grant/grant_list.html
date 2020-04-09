@@ -6,6 +6,9 @@
 {% block content %}
 <div class="container-fluid">
     <h1 class="h3 my-3">新潟大学に郵便やメールで通知のあった助成財団等の公募情報</h1>
+    <a class="btn btn-outline-primary my-3 mr-3" href="{% url 'grant:export_csv' %}">CSVダウンロード（全件）</a>
+
+
     <form method="GET" action="" name="filter_form">
         <div class="form-group border rounded p-3">
             <h2 class="h6">絞り込み</h2>

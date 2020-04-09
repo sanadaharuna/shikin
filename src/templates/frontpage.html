@@ -5,19 +5,20 @@
 <div class="container">
     <div class="row my-3">
         <div class="col-sm-12">
-            <div class="card my-3 bg-light">
+            <h1 class="h4 my-4">研究資金公募情報</h1>
+            <div class="card my-3 bg-light shadow" id="frontpage_card1">
                 <a href="{% url 'erad:list' %}?before_closing_date=on" class="text-decoration-none">
                     <div class="card-body">
                         <h1 class="card-title h2">政府系の競争的研究資金 一覧</h1>
-                        <p class="card-text">主にe-Radの公募情報を掲載しています。</p>
+                        <p class="card-text">主に府省共通研究管理システム(e-Rad)で掲載されている公募情報です</p>
                     </div>
                 </a>
             </div>
-            <div class="card my-3 bg-light">
+            <div class="card mt-5 bg-light shadow" id="frontpage_card1">
                 <a href="{% url 'grant:list' %}" class="text-decoration-none">
                     <div class="card-body">
                         <h1 class="card-title h2">助成財団等の公募情報 一覧</h1>
-                        <p class="card-text">新潟大学に郵便やメールで通知のあったものを掲載しています</p>
+                        <p class="card-text">新潟大学に郵便やメールで通知のあったものを表示します</p>
                     </div>
                 </a>
             </div>
@@ -28,22 +29,33 @@
         <div class="col-md-6">
             <h1 class="h4 my-3">外部資金の応募にあたって</h1>
             <h2 class="h5 my-3">注意事項</h2>
-            <ul class="mr-5">
+            <ol class="mr-5">
                 <li class="my-4">国・政府系機関の公募で、府省共通研究管理システム (e-Rad) を利用するものについては、 ID、パスワードの発行、及び申請書類の機関承認が必要な場合があります。</li>
-                <li class="my-4">ID、パスワードの発行、申請書類の機関承認等で不明な点がありましたら、各部局の担当係にお問い合わせください。問い合せ先は下記の通りです。 </li>
+                <li class="my-4">ID、パスワードの発行、申請書類の機関承認等で不明な点がありましたら、各部局の担当係にお問い合わせください。</li>
                 <li class="my-4">各種助成金等に応募する場合は、所属部局の担当係に応募書類の写しを 1 部提出してください。</li>
                 <li class="my-4">e-Radの申請で機関承認が必要な公募の場合は、e-Radの申請期限の<strong> 5 営業日前</strong>までに、部局事務室に申請書を提出してください。</li>
-            </ul>
+                <li class="my-4">学長印や部局長推薦等が必要な公募の場合は、手続きに日数が必要です。事前に余裕を持って、下記の問合せ先に連絡してください。</li>
+            </ol>
 
             <h2 class="h5 my-3">学内問合せ先</h2>
-            <ul class="mr-5">
-                <li>人文社会科学系：</li>
-                <li>自然科学系：</li>
-                <li>医歯学系、病院、脳研：</li>
-                <li>教育・学生支援機構：</li>
-            </ul>
-
-
+            <dl>
+                <dt>人文社会科学系</dt>
+                <dd>人文社会科学系 総務課 庶務係</dd>
+                <dd>内線：6577</dd>
+                <dd>js-shomu@adm.niigata-u.ac.jp</dd>
+                <dt class="mt-4">自然科学系</dt>
+                <dd>自然科学系 総務課 学系研究支援係</dd>
+                <dd>内線：7677</dd>
+                <dd>siz-kenkyu@adm.niigata-u.ac.jp</dd>
+                <dt class="mt-4">医歯学系・医歯学総合病院・脳研究所</dt>
+                <dd>医歯学総合病院 基礎・臨床支援課 外部資金係</dd>
+                <dd>内線：2012，2013，2014</dd>
+                <dd>isgkenkyu@adm.niigata-u.ac.jp</dd>
+                <dt class="mt-4">その他の部局に所属する研究者</dt>
+                <dd>研究企画推進部 研究推進課 研究企画係</dd>
+                <dd>内線：5385</dd>
+                <dd>kaken@adm.niigata-u.ac.jp</dd>
+            </dl>
         </div>
         <div class="col-md-6">
             <h1 class="h4 my-3">公募情報（外部リンク）</h1>

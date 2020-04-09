@@ -1,43 +1,26 @@
 
-/* h1 {
-  padding: 0.5em;
-  border-left: solid 5px #008555;
-} */
-
 h2 {
   padding: 0.5em;
-  border-left: solid 5px #594d99;
+  border-left: solid 5px #008555;
 }
 
-h3 {
-  padding: 0.5em;
-  border-left: solid 5px #994d66;
-}
 
-h4 {
-  padding: 0.5em;
-  border-left: solid 5px #8c994d;
-}
-
-.datepicker-days th.dow:first-child,
+/* .datepicker-days th.dow:first-child,
 .datepicker-days td:first-child {
   color: #f00;
 }
 .datepicker-days th.dow:last-child,
 .datepicker-days td:last-child {
   color: #00f;
-}
-
-[v-cloak] {
-  display: none;
-}
-
-
-/* th.sorted.desc::after {
-  display: inline-block;
-  content: "▼";
-}
-th.sorted.asc::after {
-  display: inline-block;
-  content: "▲";
 } */
+
+/* [v-cloak] {
+  display: none;
+} */
+
+
+#frontpage_card1:hover {
+  color: #fff;
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
