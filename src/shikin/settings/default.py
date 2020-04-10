@@ -114,7 +114,6 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-# STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 # crispy-forms
 CRISPY_TEMPLATE_PACK = "bootstrap4"
@@ -125,12 +124,3 @@ NUMBER_GROUPING = 3
 LOGIN_REDIRECT_URL = "/shikin_admin"
 LOGOUT_REDIRECT_URL = "/accounts/login"
 
-
-if DEBUG:
-
-    def show_toolbar(request):
-        return True
-
-    INSTALLED_APPS += ("debug_toolbar",)
-    MIDDLEWARE += ("debug_toolbar.middleware.DebugToolbarMiddleware",)
-    DEBUG_TOOLBAR_CONFIG = {"SHOW_TOOLBAR_CALLBACK": show_toolbar}

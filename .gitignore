@@ -3,3 +3,4 @@ nginx/log/*
 .vscode
 *.env
 uwsgi.log
+src/shikin/settings/local.py
