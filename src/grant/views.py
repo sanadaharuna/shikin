@@ -3,10 +3,10 @@ import datetime
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
-from django.views.generic import ListView, TemplateView
+from django.views.generic import ListView, TemplateView, View
 
-from .forms import GrantSearchForm
-from .models import Grant
+from grant.forms import GrantSearchForm
+from grant.models import Grant
 
 
 class GrantListView(ListView):
@@ -37,26 +37,53 @@ class GrantListView(ListView):
         return queryset
 
 
-def export_csv(request):
-    response = HttpResponse(content_type="text/csv; charset=cp932")
-    filename = "grant_export_" + datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-    response["Content-Disposition"] = "attachment; filename=" + filename + ".csv"
+class GrantExportView(View):
+    def get(self, request):
+        response = HttpResponse(content_type="text/csv; charset=cp932")
+        filename = "grant_export_" + datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        response["Content-Disposition"] = "attachment; filename=" + \
+            filename + ".csv"
 
-    writer = csv.writer(response)
-    writer.writerow(["整理番号", "データ登録日", "財団等の名称", "公募名", "公募URL", "本部での取りまとめの有無", "備考"])
-    grant_list = Grant.objects.all()
-    for grant in grant_list:
-        row = [
-            grant.id,
-            grant.acceptance_date,
-            grant.foundation,
-            grant.grant_name,
-            grant.url,
-            grant.arrange,
-            grant.remarks,
-        ]
-        writer.writerow(row)
-    return response
+        writer = csv.writer(response)
+        writer.writerow(["整理番号", "データ登録日", "財団等の名称", "公募名",
+                         "公募URL", "本部での取りまとめの有無", "備考"])
+        grant_list = Grant.objects.all()
+        for grant in grant_list:
+            row = [
+                grant.id,
+                grant.acceptance_date,
+                grant.foundation,
+                grant.grant_name,
+                grant.url,
+                grant.arrange,
+                grant.remarks,
+            ]
+            writer.writerow(row)
+        return response
+
+
+# def export_csv(request):
+#     response = HttpResponse(content_type="text/csv; charset=cp932")
+#     filename = "grant_export_" + datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+#     response["Content-Disposition"] = "attachment; filename=" + \
+#         filename + ".csv"
+
+#     writer = csv.writer(response)
+#     writer.writerow(["整理番号", "データ登録日", "財団等の名称", "公募名",
+#                      "公募URL", "本部での取りまとめの有無", "備考"])
+#     grant_list = Grant.objects.all()
+#     for grant in grant_list:
+#         row = [
+#             grant.id,
+#             grant.acceptance_date,
+#             grant.foundation,
+#             grant.grant_name,
+#             grant.url,
+#             grant.arrange,
+#             grant.remarks,
+#         ]
+#         writer.writerow(row)
+#     return response
 
 
 class ShikinAdminView(LoginRequiredMixin, TemplateView):
