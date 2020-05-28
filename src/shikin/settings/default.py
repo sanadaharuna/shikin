@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     "erad",
     "grant",
     "crispy_forms",
+    "bootstrap_datepicker_plus",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

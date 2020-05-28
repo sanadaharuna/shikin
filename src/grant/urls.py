@@ -1,10 +1,12 @@
 from django.urls import path
 
-from grant.views import GrantExportView, GrantListView
+from grant import views
 
 app_name = "grant"
 urlpatterns = [
-    path("", GrantListView.as_view(), name="list"),
-    # path("export_csv", export_csv, name="export_csv"),
-    path("export", GrantExportView.as_view(), name="export"),
+    path("", views.GrantListView.as_view(), name="list"),
+    path("export", views.GrantExportView.as_view(), name="export"),
+    path("create", views.GrantCreateView.as_view(), name="create"),
+    path("<int:pk>/update", views.GrantUpdateView.as_view(), name="update"),
+    path("<int:pk>/delete", views.GrantDeleteView.as_view(), name="delete"),
 ]
