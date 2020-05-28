@@ -3,7 +3,7 @@ import datetime
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
-from django.views.generic import ListView, TemplateView, View
+from django.views.generic import ListView, View
 
 from grant.forms import GrantSearchForm
 from grant.models import Grant
@@ -20,7 +20,6 @@ class GrantListView(ListView):
             context["grant_name"] = self.request.GET.get("grant_name")
         else:
             context["search_form"] = GrantSearchForm()
-        # context["cnt"] = context["grant_list"].count()
         return context
 
     def get_queryset(self):
@@ -86,5 +85,5 @@ class GrantExportView(View):
 #     return response
 
 
-class ShikinAdminView(LoginRequiredMixin, TemplateView):
-    template_name = "grant/admin.html"
+# class GrantAdminView(LoginRequiredMixin, TemplateView):
+#     template_name = "grant/admin.html"
