@@ -2,10 +2,13 @@ import csv
 import datetime
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponse
-from django.views.generic import ListView, TemplateView, View
+from django.urls import reverse_lazy
+from django.views.generic import ListView, View
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
-from grant.forms import GrantSearchForm
+from grant.forms import GrantForm, GrantSearchForm
 from grant.models import Grant
 
 
@@ -20,7 +23,6 @@ class GrantListView(ListView):
             context["grant_name"] = self.request.GET.get("grant_name")
         else:
             context["search_form"] = GrantSearchForm()
-        # context["cnt"] = context["grant_list"].count()
         return context
 
     def get_queryset(self):
@@ -62,29 +64,21 @@ class GrantExportView(View):
         return response
 
 
-# def export_csv(request):
-#     response = HttpResponse(content_type="text/csv; charset=cp932")
-#     filename = "grant_export_" + datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-#     response["Content-Disposition"] = "attachment; filename=" + \
-#         filename + ".csv"
-
-#     writer = csv.writer(response)
-#     writer.writerow(["整理番号", "データ登録日", "財団等の名称", "公募名",
-#                      "公募URL", "本部での取りまとめの有無", "備考"])
-#     grant_list = Grant.objects.all()
-#     for grant in grant_list:
-#         row = [
-#             grant.id,
-#             grant.acceptance_date,
-#             grant.foundation,
-#             grant.grant_name,
-#             grant.url,
-#             grant.arrange,
-#             grant.remarks,
-#         ]
-#         writer.writerow(row)
-#     return response
+class GrantCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    model = Grant
+    form_class = GrantForm
+    success_message = "保存しました。"
+    success_url = reverse_lazy("grant:list")
 
 
-class ShikinAdminView(LoginRequiredMixin, TemplateView):
-    template_name = "grant/admin.html"
+class GrantUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    model = Grant
+    form_class = GrantForm
+    success_message = "保存しました。"
+    success_url = reverse_lazy("grant:list")
+
+
+class GrantDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+    model = Grant
+    success_url = reverse_lazy("grant:list")
+    success_message = "削除しました。"
