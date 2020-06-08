@@ -5,4 +5,5 @@ nginx/log/*
 uwsgi.log
 src/shikin/settings/local.py
 .venv
+migrations
 

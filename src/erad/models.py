@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Item(models.Model):
-    id = models.CharField("整理番号", max_length=200, unique=True)
+    id = models.CharField("整理番号", max_length=200, primary_key=True)
     url = models.URLField("配分機関公募情報URL", max_length=200, unique=True)
     publishing_date = models.DateField("公開日")
     funding_agency = models.CharField("配分機関", max_length=200)
