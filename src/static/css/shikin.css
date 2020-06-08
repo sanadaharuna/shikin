@@ -1,9 +1,12 @@
-
 h2 {
   padding: 0.5em;
   border-left: solid 5px #008555;
 }
 
+h3 {
+  padding: 0.5em;
+  border-left: solid 5px #850031;
+}
 
 /* .datepicker-days th.dow:first-child,
 .datepicker-days td:first-child {
@@ -17,7 +20,6 @@ h2 {
 /* [v-cloak] {
   display: none;
 } */
-
 
 #frontpage_card1:hover {
   color: #fff;

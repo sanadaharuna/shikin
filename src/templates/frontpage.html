@@ -3,86 +3,122 @@
 
 {% block content %}
 <div class="container">
-    <div class="row my-3">
-        <div class="col-sm-12">
-            <h1 class="h4 my-4">研究資金公募情報</h1>
+    <div class="row my-5">
+        <div class="col-md-6 pr-5">
+            <h2 class="h4">助成財団等の公募情報</h2>
+            <p> 各種助成金等に応募する場合は、所属部局の担当係に応募書類の写しを提出してください。</p>
+            <p> 学長印や部局長推薦等が必要な公募の場合は、手続きに日数が必要です。事前に余裕を持って、下記の問合せ先に連絡してください。</p>
             <div class="card my-3 bg-light shadow" id="frontpage_card1">
-                <a href="{% url 'erad:list' %}?before_closing_date=on" class="text-decoration-none">
-                    <div class="card-body">
-                        <h1 class="card-title h2">政府系の競争的研究資金 一覧</h1>
-                        <p class="card-text">主に府省共通研究管理システム(e-Rad)で掲載されている公募情報です</p>
-                    </div>
-                </a>
-            </div>
-            <div class="card mt-5 bg-light shadow" id="frontpage_card1">
                 <a href="{% url 'grant:list' %}" class="text-decoration-none">
                     <div class="card-body">
-                        <h1 class="card-title h2">助成財団等の公募情報 一覧</h1>
+                        <h1 class="card-title h4">一覧を見る</h1>
                         <p class="card-text">新潟大学に郵便やメールで通知のあったものを表示します</p>
                     </div>
                 </a>
             </div>
         </div>
+        <div class="col-md-6 pl-5">
+            <h2 class="h4">政府系の競争的研究資金公募情報</h2>
+            <p> 国・政府系機関の公募で、<a href="https://www.e-rad.go.jp/" target="_blank">府省共通研究開発システム（e-Rad）</a>を利用するものについては、
+                申請書類の機関承認が必要な場合があります。機関承認が必要な公募の場合は、e-Radの申請期限の<strong> 5
+                    営業日前</strong>までに、部局事務室に申請書を提出してください。</p>
+            <p> e-RadのID、パスワードの発行、申請書類の機関承認等で不明な点がありましたら、下記の問合せ先に連絡してください。</p>
+            <div class="card my-3 bg-light shadow" id="frontpage_card1">
+                <a href="{% url 'erad:list' %}?before_closing_date=on" class="text-decoration-none">
+                    <div class="card-body ">
+                        <h1 class="card-title h4">一覧を見る</h1>
+                        <p class="card-text">主にe-Radで掲載されている公募情報です</p>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
-
-    <div class="row my-5">
-        <div class="col-md-6">
-            <h1 class="h4 my-3">外部資金の応募にあたって</h1>
-            <h2 class="h5 my-3">注意事項</h2>
-            <ol class="mr-5">
-                <li class="my-4">国・政府系機関の公募で、府省共通研究管理システム (e-Rad) を利用するものについては、 ID、パスワードの発行、及び申請書類の機関承認が必要な場合があります。</li>
-                <li class="my-4">ID、パスワードの発行、申請書類の機関承認等で不明な点がありましたら、各部局の担当係にお問い合わせください。</li>
-                <li class="my-4">各種助成金等に応募する場合は、所属部局の担当係に応募書類の写しを 1 部提出してください。</li>
-                <li class="my-4">e-Radの申請で機関承認が必要な公募の場合は、e-Radの申請期限の<strong> 5 営業日前</strong>までに、部局事務室に申請書を提出してください。</li>
-                <li class="my-4">学長印や部局長推薦等が必要な公募の場合は、手続きに日数が必要です。事前に余裕を持って、下記の問合せ先に連絡してください。</li>
-            </ol>
-
-            <h2 class="h5 my-3">学内問合せ先</h2>
+    <hr>
+    <div class="row my-4">
+        <div class="col-md-12">
+            <h2 class="h4">問合せ先</h2>
+        </div>
+    </div>
+    <div class="row my-4">
+        <div class="col-md-3">
             <dl>
                 <dt>人文社会科学系</dt>
-                <dd>人文社会科学系 総務課 庶務係</dd>
-                <dd>内線：6577</dd>
-                <dd>js-shomu@adm.niigata-u.ac.jp</dd>
-                <dt class="mt-4">自然科学系</dt>
-                <dd>自然科学系 総務課 学系研究支援係</dd>
-                <dd>内線：7677</dd>
-                <dd>siz-kenkyu@adm.niigata-u.ac.jp</dd>
-                <dt class="mt-4">医歯学系・医歯学総合病院・脳研究所</dt>
-                <dd>医歯学総合病院 基礎・臨床支援課 外部資金係</dd>
-                <dd>内線：2012，2013，2014</dd>
-                <dd>isgkenkyu@adm.niigata-u.ac.jp</dd>
-                <dt class="mt-4">その他の部局に所属する研究者</dt>
-                <dd>研究企画推進部 研究推進課 研究企画係</dd>
-                <dd>内線：5385</dd>
-                <dd>kaken@adm.niigata-u.ac.jp</dd>
+                <dd>総務課 庶務係</dd>
+                <dd>内線 6577</dd>
+                <dd><a href="mailto: js-shomu@adm.niigata-u.ac.jp">js-shomu@adm.niigata-u.ac.jp</a></dd>
             </dl>
         </div>
-        <div class="col-md-6">
-            <h1 class="h4 my-3">公募情報（外部リンク）</h1>
+        <div class="col-md-3">
+            <dl>
+                <dt>自然科学系</dt>
+                <dd>総務課 学系研究支援係</dd>
+                <dd>内線 7677</dd>
+                <dd><a href="mailto:siz-kenkyu@adm.niigata-u.ac.jp">siz-kenkyu@adm.niigata-u.ac.jp</a></dd>
+            </dl>
+        </div>
+        <div class="col-md-3">
+            <dl>
+                <dt>医歯学系</dt>
+                <dt>医歯学総合病院</dt>
+                <dt>脳研究所</dt>
+                <dd>基礎・臨床研究支援課 外部資金係</dd>
+                <dd>内線 2012, 2013, 2014</dd>
+                <dd><a href="mailto:isgkenkyu@adm.niigata-u.ac.jp">isgkenkyu@adm.niigata-u.ac.jp</a></dd>
+            </dl>
+        </div>
+        <div class="col-md-3">
+            <dl>
+                <dt>左記以外</dt>
+                <dd>研究推進課 研究資金係</dd>
+                <dd>内線 5642</dd>
+                <dd><a href="mailto: kaken@adm.niigata-u.ac.jp">kaken@adm.niigata-u.ac.jp</a></dd>
+            </dl>
+        </div>
+    </div>
+
+    <hr>
+    <div class="row my-4">
+        <div class="col-md-12">
+            <h2 class="h4">公募情報（外部リンク）</h2>
             <p>競争的な研究資金の公募情報が掲載されているサイトを紹介します。</p>
-            <h2 class="h5">e-Rad - 府省共通研究開発管理システム</h2>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <h3 class="h6">府省共通研究開発管理システム e-Rad</h3>
             <ul>
                 <li><a href="https://www.e-rad.go.jp/erad/portal/jigyolist/present/present?locale=ja"
-                        target="_blank">公募一覧</a></li>
+                        target="_blank">公募一覧</a>
+                </li>
             </ul>
-            <h2 class="h5">AMED - 国立研究開発法人日本医療研究開発機構</h2>
+        </div>
+        <div class="col-md-4">
+            <h3 class="h6">AMED - 日本医療研究開発機構</h3>
             <ul>
                 <li><a href="https://www.amed.go.jp/search.php" target="_blank">公募情報検索</a></li>
                 <li><a href="https://www.amed.go.jp/koubo/yokoku_index.html" target="_blank">公募予告一覧</a></li>
                 <li><a href="https://www.amed.go.jp/koubo/koubo_index.html" target="_blank">公募情報一覧</a></li>
                 <li><a href="https://www.amed.go.jp/pr/mailmagazine.html" target="_blank">AMEDメール配信サービス</a></li>
             </ul>
-            <h2 class="h5">JST - 国立研究開発法人科学技術振興機構</h2>
+            <h3 class="h6 mt-5">JSPS - 日本学術振興会</h3>
+            <ul>
+                <li><a href="https://www.jsps.go.jp/info/index1.html" target="_blank">公募情報一覧</a></li>
+                <li><a href="https://www.jsps.go.jp/j-mailmagazine/subscription.html" target="_blank">JSPS
+                        Monthly</a></li>
+            </ul>
+            <h3 class="h6 mt-5">JST - 科学技術振興機構</h3>
             <ul>
                 <li><a href="https://www.jst.go.jp/bosyu/bosyu.html" target="_blank">公募情報一覧</a></li>
                 <li><a href="https://www.jst.go.jp/melmaga.html" target="_blank">JSTが発行するメールマガジン</a></li>
             </ul>
-            <h2 class="h5">NEDO - 国立研究開発法人新エネルギー・産業技術総合開発機構</h2>
+            <h3 class="h6 mt-5">NEDO - 新エネルギー・産業技術総合開発機構</h3>
             <ul>
                 <li><a href="https://www.nedo.go.jp/search/?type=koubo" target="_blank">公募情報一覧</a></li>
                 <li><a href="https://www.nedo.go.jp/nedomail/index.html" target="_blank">NEDOメール配信サービス</a></li>
             </ul>
-            <h2 class="h5">公益財団法人 助成財団センター</h2>
+        </div>
+        <div class="col-md-4">
+            <h3 class="h6">公益財団法人 助成財団センター</h3>
             <ul>
                 <li><a href="http://www.jfc.or.jp/grant-search/c_search.php5" target="_blank">助成プログラム検索</a></li>
                 <li><a href="http://www.jfc.or.jp/grant-search/z_search.php5" target="_blank">団体名による検索</a></li>
@@ -90,7 +126,7 @@
                 <li><a href="http://www.jfc.or.jp/grant-search/news/" target="_blank">助成金募集ニュース</a></li>
                 <li><a href="http://www.jfc.or.jp/z-link/link/" target="_blank">助成財団リンク集</a></li>
             </ul>
-            <h2 class="h5">その他</h2>
+            <h3 class="h6 mt-5">その他</h3>
             <ul>
                 <li><a href="https://www.colabory.com/grants/" target="_blank">コラボリー /
                         Grants 研究助成</a></li>

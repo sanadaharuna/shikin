@@ -16,7 +16,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'frontpage' %}">新潟大学 研究資金公募情報</a>
+        <a class="navbar-brand" href="{% url 'frontpage' %}">新潟大学 研究資金公募情報【試験運用中】</a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber"
             aria-expanded="false" aria-label="ナビゲーションの切替">
             <span class="navbar-toggler-icon"></span>
@@ -27,8 +27,70 @@
     {% endblock %}
 
     <footer class="footer py-3 bg-light">
-        <div class="container-fluid">
-            <span class="text-muted">新潟大学 研究資金公募情報</span>
+        <div class="container text-muted">
+            <div class="row my-4">
+                <div class="col-md-12">
+                    <h4><a href="{% url 'frontpage' %}">新潟大学 研究資金公募情報【試験運用中】</a></h4>
+                </div>
+            </div>
+            <hr>
+            <div class="row my-4">
+                <div class="col-md-12">
+                    <h5>掲載内容・手続きについて</h5>
+                </div>
+            </div>
+            <div class="row my-4">
+                <div class="col-md-3">
+                    <dl>
+                        <dt>人文社会科学系</dt>
+                        <dd>総務課 庶務係</dd>
+                        <dd>内線 6577</dd>
+                        <dd><a href="mailto: js-shomu@adm.niigata-u.ac.jp">js-shomu@adm.niigata-u.ac.jp</a></dd>
+                    </dl>
+                </div>
+                <div class="col-md-3">
+                    <dl>
+                        <dt>自然科学系</dt>
+                        <dd>総務課 学系研究支援係</dd>
+                        <dd>内線 7677</dd>
+                        <dd><a href="mailto:siz-kenkyu@adm.niigata-u.ac.jp">siz-kenkyu@adm.niigata-u.ac.jp</a></dd>
+                    </dl>
+                </div>
+                <div class="col-md-3">
+                    <dl>
+                        <dt>医歯学系</dt>
+                        <dt>医歯学総合病院</dt>
+                        <dt>脳研究所</dt>
+                        <dd>基礎・臨床研究支援課 外部資金係</dd>
+                        <dd>内線 2012, 2013, 2014</dd>
+                        <dd><a href="mailto:isgkenkyu@adm.niigata-u.ac.jp">isgkenkyu@adm.niigata-u.ac.jp</a></dd>
+                    </dl>
+                </div>
+                <div class="col-md-3">
+                    <dl>
+                        <dt>左記以外</dt>
+                        <dd>研究推進課 研究資金係</dd>
+                        <dd>内線 5642</dd>
+                        <dd><a href="mailto: kaken@adm.niigata-u.ac.jp">kaken@adm.niigata-u.ac.jp</a></dd>
+                    </dl>
+                </div>
+            </div>
+            <hr>
+            <div class="row my-4">
+                <div class="col-md-12">
+                    <h5>システムの不具合について</h5>
+                </div>
+            </div>
+            <div class="row my-4">
+                <div class="col-md-12">
+                    <dl>
+                        <dt>研究企画室 URA</dt>
+                        <dd>内線 7569</dd>
+                        <dd><a href="mailto:rao2@adm.niigata-u.ac.jp">rao2@adm.niigata-u.ac.jp</a></dd>
+                    </dl>
+                </div>
+            </div>
+            <hr>
         </div>
     </footer>
 
