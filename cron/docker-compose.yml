@@ -4,7 +4,7 @@ services:
   cron:
     build: .
     container_name: shikin_cron
-    restart: always
+    # restart: always
 
 networks:
   default:
