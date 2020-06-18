@@ -1,13 +1,12 @@
-Django==2.2.12
+Django==2.2.13
 requests==2.22.0
 beautifulsoup4==4.7.1
 django-crispy-forms==1.7.2
 django-debug-toolbar==2.2
 django-bootstrap-datepicker-plus==3.0.5
 
-autopep8==1.5.1
-black==19.3b0
-flake8==3.7.9
+autopep8
+flake8
 
 # direct install on Dockerfile
 # mysqlclient==1.4.5
