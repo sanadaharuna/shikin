@@ -22,6 +22,11 @@
             <span class="navbar-toggler-icon"></span>
         </button>
     </nav>
+    {% if request.user.is_authenticated %}
+    <div class="alert alert-warning" role="alert">
+        管理者アカウントでログイン中です。<a class="btn btn-light" href="{% url 'admin:logout' %}">ログアウト</a>
+    </div>
+    {% endif %}
 
     {% block content %}
     {% endblock %}

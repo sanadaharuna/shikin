@@ -9,7 +9,7 @@ urlpatterns = [
     path("kanri", TemplateView.as_view(template_name="kanri.html"), name="kanri"),
     path("erad/", include("erad.urls")),
     path("grant/", include("grant.urls")),
-    path("admin/", admin.site.urls),
+    path("kanrisite/", admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
 ]
 

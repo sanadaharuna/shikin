@@ -41,17 +41,28 @@
                 <th width=25%>公募名</th>
                 <th width=10% align="center">本部による取りまとめ</th>
                 <th width=15%>備考</th>
+                {% if request.user.is_authenticated %}
+                <th></th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
             {% for grant in grant_list %}
             <tr>
-                <td>{{ grant.acceptance_date | date:"Y/m/d" }}</td>
+                <td>
+                    {{ grant.acceptance_date | date:"Y/m/d" }}
+                </td>
                 <td>{{ grant.foundation }}</td>
                 <td><a href="{{ grant.url }}" target="_blank" rel="noopener noreferrer">{{ grant.grant_name }} <i
                             class="fas fa-external-link-alt"></i></a></td>
                 <td align="center">{{ grant.get_arrange_display }}</td>
                 <td><small>{{ grant.remarks }}</small></td>
+                {% if request.user.is_authenticated %}
+                <td>
+                    <a class="btn btn-outline-warning" href="{% url 'grant:update' grant.pk %}">編集</a>
+                    <a class="btn btn-outline-danger" href="{% url 'grant:delete' grant.pk %}">削除</a>
+                </td>
+                {% endif %}
             </tr>
             {% endfor %}
         </tbody>
