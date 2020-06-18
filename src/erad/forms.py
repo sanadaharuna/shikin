@@ -1,6 +1,5 @@
 from django import forms
 
-from .models import Item
 
 FUNDING_AGENCY = (
     ("", "選択なし"),
