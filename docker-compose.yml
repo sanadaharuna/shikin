@@ -27,6 +27,16 @@ services:
       - django
     restart: always
 
+  scrapy:
+    build: ./src
+    container_name: scrapy
+    tty: true
+    volumes:
+      - ./src:/code
+    environment:
+      - ON_DOCKER=1
+    restart: always
+
 networks:
   default:
     external:

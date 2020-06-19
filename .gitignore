@@ -6,4 +6,6 @@ uwsgi.log
 src/shikin/settings/local.py
 .venv
 migrations
-
+.scrapy
+*.sqlite3
+twistd.pid

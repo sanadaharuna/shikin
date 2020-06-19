@@ -1,0 +1,1 @@
+0 9,12,15,18 * * 1-5 cd /code/erad; python run_scrapy_crawl_fund.py
