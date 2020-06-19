@@ -31,7 +31,7 @@
     <div class="alert alert-primary my-4">
         検索結果：<span class="h2">{{ paginator.count | intcomma }}</span> 件
     </div>
-    <p>初期状態では、データ登録日の降順で表示します。見出しをクリックして、任意の項目の昇順、降順にソートできます。</p>
+    <p>初期状態では、データ登録日の降順で表示します。見出しをクリックすると、任意の項目の昇順、降順にソートできます。</p>
 
     <table id="fav-table" class="table table-hover">
         <thead class="thead-light">
@@ -39,7 +39,7 @@
                 <th width=10%>データ登録日</th>
                 <th width=30%>財団等の名称</th>
                 <th width=25%>公募名</th>
-                <th width=10% align="center">本部による取りまとめ</th>
+                <th width=10%>本部による取りまとめ</th>
                 <th width=15%>備考</th>
                 {% if request.user.is_authenticated %}
                 <th></th>
@@ -55,12 +55,12 @@
                 <td>{{ grant.foundation }}</td>
                 <td><a href="{{ grant.url }}" target="_blank" rel="noopener noreferrer">{{ grant.grant_name }} <i
                             class="fas fa-external-link-alt"></i></a></td>
-                <td align="center">{{ grant.get_arrange_display }}</td>
+                <td>{{ grant.get_arrange_display }}</td>
                 <td><small>{{ grant.remarks }}</small></td>
                 {% if request.user.is_authenticated %}
                 <td>
-                    <a class="btn btn-outline-warning" href="{% url 'grant:update' grant.pk %}">編集</a>
-                    <a class="btn btn-outline-danger" href="{% url 'grant:delete' grant.pk %}">削除</a>
+                    <a class="btn btn-sm btn-outline-primary" href="{% url 'grant:update' grant.pk %}">編集</a>
+                    <a class="btn btn-sm btn-outline-warning" href="{% url 'grant:delete' grant.pk %}">削除</a>
                 </td>
                 {% endif %}
             </tr>

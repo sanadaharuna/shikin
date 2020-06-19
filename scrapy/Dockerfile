@@ -18,6 +18,7 @@ RUN apk add --update --no-cache mariadb-connector-c-dev \
 ADD requirements.txt /code/
 RUN pip install -r requirements.txt
 RUN apk del .build-deps
-RUN apk add libxslt
+RUN apk add libxslt tzdata
+ENV TZ=Asia/Tokyo
 COPY crontab /var/spool/cron/crontabs/root
 CMD ["crond", "-f", "-L", "/dev/stderr"]

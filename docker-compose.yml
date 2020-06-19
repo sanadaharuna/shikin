@@ -23,6 +23,8 @@ services:
       - ./django/static:/static
     depends_on:
       - django
+    environment:
+      TZ: Asia/Tokyo
     restart: always
 
   scrapy:

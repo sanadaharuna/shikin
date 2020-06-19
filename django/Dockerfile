@@ -12,7 +12,8 @@ RUN apk add --update --no-cache mariadb-connector-c-dev \
     linux-headers\
     && pip install mysqlclient==1.4.6 \
     uwsgi==2.0.18 \
-    && apk del .build-deps
+    && apk del .build-deps \
+    && apk add tzdata
 
 # RUN pip install --upgrade pip
 ADD requirements.txt /code/
