@@ -2,13 +2,11 @@ version: "3"
 
 services:
   django:
-    build: ./src
+    build: ./django
     container_name: shikin_django
     command: uwsgi --ini /code/shikin/django.ini
-    # Djangoセットアップ時はcommandからuwsgiを起動せずに、ttyにする
-    # tty: True
     volumes:
-      - ./src:/code
+      - ./django:/code
     env_file:
       - ./django.env
     expose:
@@ -22,17 +20,17 @@ services:
       - ./nginx/conf:/etc/nginx/conf.d
       - ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
       - ./nginx/log/:/var/log/nginx/
-      - ./src/static:/static
+      - ./django/static:/static
     depends_on:
       - django
     restart: always
 
   scrapy:
-    build: ./src
-    container_name: scrapy
+    build: ./scrapy
+    container_name: shikin_scrapy
     tty: true
     volumes:
-      - ./src:/code
+      - ./scrapy:/code
     environment:
       - ON_DOCKER=1
     restart: always
