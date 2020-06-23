@@ -18,3 +18,18 @@ class Item(models.Model):
     class Meta:
         verbose_name = "競争的資金等公募情報"
         verbose_name_plural = "競争的資金等公募情報"
+        abstract = True
+
+
+class Erad(Item):
+    pass
+
+    def __str__(self):
+        return self.call_for_applications
+
+
+class Jsps(Item):
+    pass
+
+    def __str__(self):
+        return self.call_for_applications

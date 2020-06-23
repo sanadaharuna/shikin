@@ -1,11 +1,15 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views.generic import ListView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
-from .forms import ItemSearchForm
-from .models import Item
+from .forms import ItemSearchForm, ItemForm
+from .models import Erad, Jsps
 
 
-class EradListView(ListView):
+class ItemListView(ListView):
     paginate_by = 20
 
     def get_context_data(self, **kwargs):
@@ -35,7 +39,9 @@ class EradListView(ListView):
         return context
 
     def get_queryset(self):
-        queryset = Item.objects.all()
+        queryset = Erad.objects.all()
+        jsps = Jsps.objects.all()
+        queryset = queryset.union(jsps)
         # search by funding_agency
         if self.request.GET.get("funding_agency"):
             funding_agency = self.request.GET.get("funding_agency")
@@ -53,3 +59,23 @@ class EradListView(ListView):
             queryset = queryset.filter(closing_date__gte=timezone.now())
         queryset = queryset.order_by("publishing_date").reverse()
         return queryset
+
+
+class JspsCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    model = Jsps
+    form_class = ItemForm
+    success_message = "保存しました。"
+    success_url = reverse_lazy("erad:list")
+
+
+class JspsUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    model = Jsps
+    form_class = ItemForm
+    success_message = "保存しました。"
+    success_url = reverse_lazy("erad:list")
+
+
+class JspsDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+    model = Jsps
+    success_message = "削除しました。"
+    success_url = reverse_lazy("erad:list")

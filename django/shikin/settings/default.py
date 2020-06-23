@@ -1,7 +1,7 @@
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 # Quick-start development settings - unsuitable for production
@@ -22,12 +22,17 @@ ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOSTS")]
 INSTALLED_APPS = [
     "erad",
     "grant",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
     "crispy_forms",
     "bootstrap_datepicker_plus",
+    "bootstrap4",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
+    "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
@@ -48,7 +53,10 @@ ROOT_URLCONF = "shikin.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR), "templates"],
+        "DIRS": [
+            os.path.join(BASE_DIR, "templates"),
+            os.path.join(BASE_DIR, 'templates', 'allauth'),
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -120,5 +128,16 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 # django.contrib.humanize - intcomma
 NUMBER_GROUPING = 3
 
-LOGIN_REDIRECT_URL = "/shikin_admin"
-LOGOUT_REDIRECT_URL = "/accounts/login"
+# datepicker
+BOOTSTRAP4 = {'include_jquery': True}
+
+# django-allauth
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+)
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = "/"
+ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/"
+ACCOUNT_LOGOUT_ON_GET = True

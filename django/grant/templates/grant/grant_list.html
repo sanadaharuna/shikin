@@ -5,42 +5,55 @@
 
 {% block content %}
 <div class="container-fluid">
-    <h1 class="h3 my-3">新潟大学に郵便やメールで通知のあった助成財団等の公募情報</h1>
-    <a class="btn btn-outline-primary my-3 mr-3" href="{% url 'grant:export' %}">CSVダウンロード（全件）</a>
+    <h1 class="h3 my-5">新潟大学に郵便やメールで通知のあった民間助成財団等の公募情報</h1>
 
-
-    <form method="GET" action="" name="filter_form">
-        <div class="form-group border rounded p-3">
-            <h2 class="h6">絞り込み</h2>
-            <div class="row">
-                <div class="col-md-6">
-                    {{ search_form.foundation | as_crispy_field }}
-                </div>
-                <div class="col-md-6">
-                    {{ search_form.grant_name | as_crispy_field }}
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card card-info">
+                <div class="card-body">
+                    <h2 class="h6">絞り込み</h2>
+                    {% crispy search_form　search_form.helper %}
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">
-                <i class="fas fa-search"></i>
-                検索
-            </button>
         </div>
-    </form>
+        <div class="col-md-4">
+            <div class="card card-info">
+                <div class="card-body">
+                    <h2 class="h6">全データの取得</h2>
+                    <a class="btn btn-outline-primary my-3 mr-3" href="{% url 'grant:export' %}">CSV形式でダウンロード</a>
+                </div>
+            </div>
+        </div>
+        {% if request.user.is_authenticated %}
+        <div class="col-md-4">
+            <div class="card card-info">
+                <div class="card-body">
+                    <h2 class="h6">新規登録</h2>
+                    <a class="btn btn-outline-primary my-3 mr-3" href="{% url 'grant:create' %}">公募情報の登録</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+
 
     {% if grant_list %}
-    <div class="alert alert-primary my-4">
-        検索結果：<span class="h2">{{ paginator.count | intcomma }}</span> 件
-    </div>
-    <p>初期状態では、データ登録日の降順で表示します。見出しをクリックすると、任意の項目の昇順、降順にソートできます。</p>
+    <div class="alert alert-primary my-5">
+        検索結果：<span class="h3">{{ paginator.count | intcomma }}</span> 件
+        （{{ page_obj.paginator.num_pages }} ページのうち {{ page_obj.number }} ページ目を表示）
 
-    <table id="fav-table" class="table table-hover">
+    </div>
+    {% include "grant/_pagination.html" %}
+
+    <table class="table table-hover">
         <thead class="thead-light">
             <tr>
-                <th width=10%>データ登録日</th>
-                <th width=30%>財団等の名称</th>
-                <th width=25%>公募名</th>
+                <th>整理番号</th>
+                <th width=10%>更新日</th>
+                <th width=40%>助成財団等の名称、公募名</th>
                 <th width=10%>本部による取りまとめ</th>
-                <th width=15%>備考</th>
+                <th width=20%>備考</th>
                 {% if request.user.is_authenticated %}
                 <th></th>
                 {% endif %}
@@ -50,13 +63,18 @@
             {% for grant in grant_list %}
             <tr>
                 <td>
-                    {{ grant.acceptance_date | date:"Y/m/d" }}
+                    {{ grant.pk }}
                 </td>
-                <td>{{ grant.foundation }}</td>
-                <td><a href="{{ grant.url }}" target="_blank" rel="noopener noreferrer">{{ grant.grant_name }} <i
-                            class="fas fa-external-link-alt"></i></a></td>
+                <td>
+                    {{ grant.accepted_at | date:"Y-m-d" }}
+                </td>
+                <td>
+                    <div>{{ grant.zaidanmei }}</div>
+                    <div><a href="{{ grant.url }}" target="_blank" rel="noopener noreferrer">{{ grant.koubomei }} <i
+                                class="fas fa-external-link-alt"></i></a></div>
+                </td>
                 <td>{{ grant.get_arrange_display }}</td>
-                <td><small>{{ grant.remarks }}</small></td>
+                <td><small>{{ grant.bikou | linebreaksbr }}</small></td>
                 {% if request.user.is_authenticated %}
                 <td>
                     <a class="btn btn-sm btn-outline-primary" href="{% url 'grant:update' grant.pk %}">編集</a>
@@ -68,44 +86,8 @@
         </tbody>
     </table>
 
-    <!-- pagination -->
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center pagination-lg g-mt-28 g-mb-28">
-            <!-- 前へ の部分 -->
-            {% if page_obj.has_previous %}
-            <li class="page-item">
-                <a class="page-link"
-                    href="?foundation={{ foundation }}&grant_name={{ grant_name }}&page={{ page_obj.previous_page_number }}">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            {% endif %}
+    {% include "grant/_pagination.html" %}
 
-            <!-- 数字の部分 -->
-            {% for num in page_obj.paginator.page_range %}
-            {% if num <= page_obj.number|add:5 and num >= page_obj.number|add:-5 %}
-
-            {% if page_obj.number == num %}
-            <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
-            {% else %}
-            <li class="page-item"><a class="page-link"
-                    href="?foundation={{ foundation }}&grant_name={{ grant_name }}&page={{ num }}">{{ num }}</a></li>
-            {% endif %}
-            {% endif %}
-            {% endfor %}
-
-            <!-- 次へ の部分 -->
-            {% if page_obj.has_next %}
-            <li class="page-item">
-                <a class="page-link"
-                    href="?foundation={{ foundation }}&grant_name={{ grant_name }}&page={{ page_obj.next_page_number }}">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-            {% endif %}
-        </ul>
-
-    </nav>
     {% else %}
     <p class="my-5">見つかりませんでした。</p>
     {% endif %}

@@ -1,0 +1,16 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+
+
+<div class="my-4">
+  <form method="post" action="{% url 'account_logout' %}">
+    {% csrf_token %}
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+    <button class="btn btn-primary" type="submit">ログアウトする</button>
+  </form>
+</div>
+
+{% endblock %}

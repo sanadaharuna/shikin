@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from .models import Item
+from .models import Jsps
 
 
-@admin.register(Item)
-class ItemAdmin(admin.ModelAdmin):
+@admin.register(Jsps)
+class JspsAdmin(admin.ModelAdmin):
     pass

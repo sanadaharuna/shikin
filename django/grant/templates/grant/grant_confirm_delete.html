@@ -1,0 +1,30 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="my-4 h3">データ削除</h1>
+    <p>このデータを削除しますか？</p>
+
+    <dl class="row">
+        <dt class="col-md-3">整理番号</dt>
+        <dd class="col-md-9">{{ object.pk }}</dd>
+        <dt class="col-md-3">受付日</dt>
+        <dd class="col-md-9">{{ object.accepted_at }}</dd>
+        <dt class="col-md-3">財団等の名称</dt>
+        <dd class="col-md-9">{{ object.zaidanmei }}</dd>
+        <dt class="col-md-3">公募名</dt>
+        <dd class="col-md-9">{{ object.koubomei }}</dd>
+        <dt class="col-md-3">URL</dt>
+        <dd class="col-md-9">{{ object.url }}</dd>
+        <dt class="col-md-3">本部での取りまとめ</dt>
+        <dd class="col-md-9">{{ object.torimatome }}</dd>
+        <dt class="col-md-3">備考</dt>
+        <dd class="col-md-9">{{ object.bikou | linebreaksbr }}</dd>
+    </dl>
+    <form action="" method="post">
+        {% csrf_token %}
+        <a class="btn btn-outline-secondary" href="{% url 'grant:list' %}">戻る</a>
+        <input type="submit" class="btn btn-warning" value="削除" />
+    </form>
+</div>
+{% endblock %}

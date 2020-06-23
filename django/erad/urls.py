@@ -1,8 +1,11 @@
 from django.urls import path
 
-from .views import EradListView
+from erad import views
 
 app_name = "erad"
 urlpatterns = [
-    path("", EradListView.as_view(), name="list"),
+    path("list", views.ItemListView.as_view(), name="list"),
+    path("create", views.JspsCreateView.as_view(), name="create"),
+    path("<int:pk>/update", views.JspsUpdateView.as_view(), name="update"),
+    path("<int:pk>/delete", views.JspsDeleteView.as_view(), name="delete"),
 ]

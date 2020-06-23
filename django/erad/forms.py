@@ -1,5 +1,9 @@
+from bootstrap_datepicker_plus import DatePickerInput
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
 from django import forms
 
+from erad.models import Item
 
 FUNDING_AGENCY = (
     ("", "選択なし"),
@@ -28,7 +32,6 @@ FUNDING_AGENCY = (
 
 
 class ItemSearchForm(forms.Form):
-    # funding_agency_char = forms.CharField(label="配分機関（自由入力）", required=False)
     funding_agency = forms.ChoiceField(
         label="配分機関", choices=FUNDING_AGENCY, required=False
     )
@@ -36,3 +39,29 @@ class ItemSearchForm(forms.Form):
     before_closing_date = forms.BooleanField(
         label="受付終了日前の公募案件のみ表示する", required=False, initial="on"
     )
+
+
+class ItemForm(forms.ModelForm):
+    class Meta:
+        model = Item
+        fields = [
+            "id",
+            "url",
+            "publishing_date",
+            "funding_agency",
+            "call_for_applications",
+            "application_unit",
+            "approved_institution",
+            "opening_date",
+            "closing_date"
+        ]
+        widgets = {
+            "publishing_date": DatePickerInput(format='%Y-%m-%d'),
+            "opening_date": DatePickerInput(format='%Y-%m-%d'),
+            "closing_date": DatePickerInput(format='%Y-%m-%d'),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.add_input(Submit("", "保存"))

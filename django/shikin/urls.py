@@ -6,11 +6,10 @@ from . import settings
 
 urlpatterns = [
     path("", TemplateView.as_view(template_name="frontpage.html"), name="frontpage"),
-    path("kanri", TemplateView.as_view(template_name="kanri.html"), name="kanri"),
     path("erad/", include("erad.urls")),
     path("grant/", include("grant.urls")),
-    path("kanrisite/", admin.site.urls),
-    path("accounts/", include("django.contrib.auth.urls")),
+    path("admin/", admin.site.urls),
+    path("accounts/", include("allauth.urls")),
 ]
 
 if settings.DEBUG:
