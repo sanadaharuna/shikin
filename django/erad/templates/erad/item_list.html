@@ -33,7 +33,7 @@
             </button>
         </div>
     </form>
-    {% if item_list %}
+    {% if object_list %}
     <div class="alert alert-primary my-4">
         検索結果：<span class="h2">{{ paginator.count | intcomma }}</span> 件
     </div>
@@ -45,26 +45,25 @@
                 <th width=50%>配分機関・公募名</th>
                 <th width=11%>応募単位</th>
                 <th width=9%>機関承認の有無</th>
-                <th width=10%>受付開始日</th>
                 <th width=10%>受付終了日</th>
             </tr>
         </thead>
         <tbody>
-            {% for item in item_list %}
+            {% for object in object_list %}
             <tr>
-                <td>{{ item.publishing_date | date:"Y-m-d" }}</td>
+                <td>{{ object.publishing_date | date:"Y-m-d" }}</td>
                 <td>
-                    <div><small class="text-muted">{{ item.funding_agency }}</small></div>
+                    <div><span class="badge badge-light">e-Rad</span></div>
+                    <div><small class="text-muted">{{ object.funding_agency }}</small></div>
                     <div>
-                        <a href="{{ item.url }}" target="_blank"
-                            rel="noopener noreferrer">{{ item.call_for_applications }}
-                            <i class="far fa-window-restore small"></i></a>
+                        <a href="{{ object.url }}" target="_blank"
+                            rel="noopener noreferrer">{{ object.call_for_applications }}
+                            <i class="fas fa-external-link-alt"></i></a>
                     </div>
                 </td>
-                <td>{{ item.application_unit }}</td>
-                <td>{{ item.approved_institution }}</td>
-                <td>{{ item.opening_date | date:"Y-m-d H:i"}}</td>
-                <td>{{ item.closing_date | date:"Y-m-d H:i"}}</td>
+                <td>{{ object.application_unit }}</td>
+                <td>{{ object.approved_institution }}</td>
+                <td>{{ object.closing_date | date:"Y-m-d H:i"}}</td>
             </tr>
             {% endfor %}
         </tbody>

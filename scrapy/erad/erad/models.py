@@ -14,7 +14,7 @@ def create_table(engine):
 
 
 class FundDatabase(DeclarativeBase):
-    __tablename__ = 'erad_item'
+    __tablename__ = 'erad_erad'
     id = Column(String(200), primary_key=True)
     url = Column(String(200))
     publishing_date = Column(Date())

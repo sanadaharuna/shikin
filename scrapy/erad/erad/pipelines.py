@@ -21,7 +21,7 @@ class EradPipeline:
         item["approved_institution"] = "".join(item["approved_institution"].strip().split())
         item["opening_date"] = datetime.strptime("".join([item["opening_date"], "+0900"]), "%Y/%m/%d %H:%M%z")
         item["closing_date"] = datetime.strptime("".join([item["closing_date"], "+0900"]), "%Y/%m/%d %H:%M%z")
-        item["url"] = item["url"].split(",")[0].split("'")[1]
+        item["url"] = "https://www.e-rad.go.jp" + item["url"].split(",")[0].split("'")[1]
         item["id"] = item["url"].split("/")[-2]
 
         # DBへ登録
@@ -43,7 +43,7 @@ class EradPipeline:
             metadata.bind = session
             # ここをもっとスマートな書き方にする
             erad_item_table = Table(
-                'erad_item', metadata,
+                'erad_erad', metadata,
                 Column("id", String(200), primary_key=True),
                 Column("url", String(200)),
                 Column("publishing_date", Date()),
@@ -54,7 +54,7 @@ class EradPipeline:
                 Column("opening_date", DateTime()),
                 Column("closing_date", DateTime())
             )
-            # updated_atとcreated_at列を加える
+            # あとでupdated_atとcreated_at列を加える
             insert_stmt = insert(erad_item_table).values(
                 id=item["id"],
                 url=item["url"],

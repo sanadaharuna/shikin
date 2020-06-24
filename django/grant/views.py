@@ -15,23 +15,32 @@ from grant.models import Grant
 
 class GrantListView(ListView):
     paginate_by = 20
+    queryset = Grant.objects.all()
+    ordering = "-accepted_at"
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        form = self.form = GrantSearchForm(self.request.GET or None)
+        if form.is_valid():
+            q = form.cleaned_data.get("q")
+            if q:
+                queryset = queryset.filter(Q(zaidanmei__contains=q) | Q(koubomei__contains=q))
+
+        # if self.request.GET.get("q"):
+        #     q = self.request.GET.get("q")
+        #     queryset = queryset.filter(Q(zaidanmei__contains=q) | Q(koubomei__contains=q))
+        # queryset = queryset.order_by("accepted_at").reverse()
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        if self.request.GET:
-            context["search_form"] = GrantSearchForm(self.request.GET)
-            context["q"] = self.request.GET.get("q")
-        else:
-            context["search_form"] = GrantSearchForm()
+        context["search_form"] = self.form
+        # if self.request.GET:
+        #     context["search_form"] = GrantSearchForm(self.request.GET)
+        #     context["q"] = self.request.GET.get("q")
+        # else:
+        #     context["search_form"] = GrantSearchForm()
         return context
-
-    def get_queryset(self):
-        queryset = Grant.objects.all()
-        if self.request.GET.get("q"):
-            q = self.request.GET.get("q")
-            queryset = queryset.filter(Q(zaidanmei__contains=q) | Q(koubomei__contains=q))
-        queryset = queryset.order_by("accepted_at").reverse()
-        return queryset
 
 
 class GrantExportView(View):
