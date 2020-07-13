@@ -24,16 +24,6 @@
                 </div>
             </div>
         </div>
-        {% if request.user.is_authenticated %}
-        <div class="col-md-4">
-            <div class="card card-info">
-                <div class="card-body">
-                    <h2 class="h6">新規登録</h2>
-                    <a class="btn btn-outline-primary my-3 mr-3" href="{% url 'grant:create' %}">公募情報の登録</a>
-                </div>
-            </div>
-        </div>
-        {% endif %}
     </div>
 
 

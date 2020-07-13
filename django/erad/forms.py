@@ -3,9 +3,9 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from django import forms
 
-from erad.models import Item
+from erad.models import Suppl
 
-FUNDING_AGENCY = (
+FA = (
     ("", "選択なし"),
     ("国立研究開発法人日本医療研究開発機構", "国立研究開発法人日本医療研究開発機構(AMED)"),
     ("国立研究開発法人情報通信研究機構", "国立研究開発法人情報通信研究機構(NICT)"),
@@ -30,31 +30,31 @@ FUNDING_AGENCY = (
     ("防衛省", "防衛省"),
 )
 
+AU = (
+    ("研究者単位", "研究者単位"),
+    ("研究機関単位", "研究機関単位"),
+)
+
+AI = (
+    ("必要", "必要"),
+    ("不要", "不要"),
+)
+
 
 class ItemSearchForm(forms.Form):
-    funding_agency = forms.ChoiceField(
-        label="配分機関", choices=FUNDING_AGENCY, required=False
-    )
-    call_for_applications = forms.CharField(label="公募名", required=False)
-    before_closing_date = forms.BooleanField(
-        label="受付終了日前の公募案件のみ表示する", required=False, initial="on"
-    )
+    fa = forms.ChoiceField(label="配分機関", choices=FA, required=False)
+    cfa = forms.CharField(label="公募名", required=False)
+    closed = forms.BooleanField(label="受付終了済みを含む", required=False)
 
 
-class ItemForm(forms.ModelForm):
+class SupplForm(forms.ModelForm):
+    funding_agency = forms.ChoiceField(choices=FA)
+    application_unit = forms.ChoiceField(choices=AU)
+    approved_institution = forms.ChoiceField(choices=AI)
+
     class Meta:
-        model = Item
-        fields = [
-            "id",
-            "url",
-            "publishing_date",
-            "funding_agency",
-            "call_for_applications",
-            "application_unit",
-            "approved_institution",
-            "opening_date",
-            "closing_date"
-        ]
+        model = Suppl
+        exclude = ("erad_key",)
         widgets = {
             "publishing_date": DatePickerInput(format='%Y-%m-%d'),
             "opening_date": DatePickerInput(format='%Y-%m-%d'),

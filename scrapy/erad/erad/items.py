@@ -17,4 +17,4 @@ class EradItem(scrapy.Item):
     opening_date = scrapy.Field()
     closing_date = scrapy.Field()
     url = scrapy.Field()
-    id = scrapy.Field()
+    erad_key = scrapy.Field()

@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from .models import Jsps
+from .models import Suppl
 
 
-@admin.register(Jsps)
-class JspsAdmin(admin.ModelAdmin):
+@admin.register(Suppl)
+class SupplAdmin(admin.ModelAdmin):
     pass

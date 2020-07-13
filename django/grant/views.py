@@ -14,7 +14,7 @@ from grant.models import Grant
 
 
 class GrantListView(ListView):
-    paginate_by = 20
+    paginate_by = 100
     queryset = Grant.objects.all()
     ordering = "-accepted_at"
 
@@ -25,21 +25,11 @@ class GrantListView(ListView):
             q = form.cleaned_data.get("q")
             if q:
                 queryset = queryset.filter(Q(zaidanmei__contains=q) | Q(koubomei__contains=q))
-
-        # if self.request.GET.get("q"):
-        #     q = self.request.GET.get("q")
-        #     queryset = queryset.filter(Q(zaidanmei__contains=q) | Q(koubomei__contains=q))
-        # queryset = queryset.order_by("accepted_at").reverse()
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["search_form"] = self.form
-        # if self.request.GET:
-        #     context["search_form"] = GrantSearchForm(self.request.GET)
-        #     context["q"] = self.request.GET.get("q")
-        # else:
-        #     context["search_form"] = GrantSearchForm()
         return context
 
 

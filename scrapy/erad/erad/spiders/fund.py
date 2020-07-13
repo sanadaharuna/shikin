@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import scrapy
 from erad.items import EradItem
 
@@ -7,9 +6,17 @@ class FundSpider(scrapy.Spider):
     name = 'fund'
     allowed_domains = ['www.e-rad.go.jp']
 
-    def __init__(self, kensakutaisho=1, *args, **kwargs):
+    def __init__(self, kensakutaisho, *args, **kwargs):
         super(FundSpider, self).__init__(*args, **kwargs)
-        self.formdata = {"kensakuText": "", "kensakutaisho": kensakutaisho, "hyoujiKensu": "050"}
+        self.formdata = {
+            "kensakuMoji": "00",
+            "kensakuText": "",
+            "kensakutaisho": kensakutaisho,
+            "hyoujiKensu": "100",
+            "downloadKb": "1",
+            "nendo": "2020",
+            "search": "abc",
+        }
 
     def start_requests(self):
         start_url = "https://www.e-rad.go.jp/erad/portal/jigyolist/present/present?locale=ja"
@@ -24,15 +31,19 @@ class FundSpider(scrapy.Spider):
             item = EradItem()
             item["publishing_date"] = tr.xpath("td[1]/text()").extract_first()
             item["funding_agency"] = tr.xpath("td[2]/text()").extract_first()
-            item["call_for_applications"] = tr.xpath("td[3]/a/text()").extract_first()
+            item["call_for_applications"] = tr.xpath(
+                "td[3]/a/text()").extract_first()
             item["url"] = tr.xpath("td[3]/a/@href").extract_first()
             item["application_unit"] = tr.xpath("td[4]/text()").extract_first()
-            item["approved_institution"] = tr.xpath("td[5]/text()").extract_first()
+            item["approved_institution"] = tr.xpath(
+                "td[5]/text()").extract_first()
             item["opening_date"] = tr.xpath("td[6]/text()").extract_first()
             item["closing_date"] = tr.xpath("td[7]/text()").extract_first()
             yield item
 
         next_page = response.css("div.btn_next a::attr(href)").extract_first()
         if next_page is not None:
-            next_page = "https://www.e-rad.go.jp" + next_page
-            yield scrapy.FormRequest(next_page, callback=self.parse, method="POST", formdata=self.formdata)
+            # next_page = "https://www.e-rad.go.jp" + next_page
+            next_page = response.urljoin(next_page)
+            # yield scrapy.FormRequest(next_page, callback=self.parse, method="POST", formdata=self.formdata)
+            yield scrapy.Request(next_page, callback=self.parse)

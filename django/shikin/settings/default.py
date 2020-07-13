@@ -83,6 +83,7 @@ DATABASES = {
         "PASSWORD": os.environ.get("MYSQL_PASSWORD"),
         "HOST": "mysql",
         "PORT": "3306",
+        'TIME_ZONE': "Asia/Tokyo",
         "OPTIONS": {
             "charset": "utf8mb4",
             "sql_mode": "TRADITIONAL,NO_AUTO_VALUE_ON_ZERO,ONLY_FULL_GROUP_BY",

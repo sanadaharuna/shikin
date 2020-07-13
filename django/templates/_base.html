@@ -11,6 +11,46 @@
     {% load bootstrap4 %}
     {% bootstrap_css %}
     {% bootstrap_javascript jquery='full' %}
+    <!-- tablesorter -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/js/jquery.tablesorter.min.js"></script>
+    <!-- <style>
+        #fav-table th {
+            background-color: pink;
+        }
+
+        .tablesorter-headerUnSorted {
+            background-image: url('img/sort.png');
+            background-repeat: no-repeat;
+            background-position: center right;
+        }
+
+        .tablesorter-headerAsc {
+            background-image: url('img/sort_a.png');
+            background-repeat: no-repeat;
+            background-position: center right;
+            border-bottom: #000 2px solid;
+        }
+
+        .tablesorter-headerDesc {
+            background-image: url('img/sort_d.png');
+            background-repeat: no-repeat;
+            background-position: center right;
+            border-bottom: #000 2px solid;
+        }
+    </style> -->
+    <script>
+        $(document).ready(function () {
+            $('#sort-table').tablesorter({
+                headers: {
+                    1: { sorter: false },
+                    2: { sorter: false },
+                    3: { sorter: false },
+                }
+            });
+        });
+    </script>
+    <!-- tablesorter end -->
     {{ form.media }}
     <link rel="stylesheet" href="{% static 'css/shikin.css' %}">
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
@@ -23,12 +63,25 @@
             aria-expanded="false" aria-label="ナビゲーションの切替">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'grant:list' %}">民間助成財団等の公募情報</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'erad:list' %}">政府系の競争的研究資金公募情報</a>
+                </li>
+            </ul>
+            {% if request.user.is_authenticated %}
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    Login ID : {{ request.user }} - <a href="{% url 'kanri' %}">管理</a> - <a
+                        href="/accounts/logout/">ログアウトする</a>
+                </li>
+            </ul>
+            {% endif %}
+        </div>
     </nav>
-    {% if request.user.is_authenticated %}
-    <div class="alert alert-warning" role="alert">
-        管理者アカウントでログイン中です。<a class="btn btn-light" href="/accounts/logout/">ログアウトする</a>
-    </div>
-    {% endif %}
 
     {% if messages %}
     {% for message in messages %}
@@ -60,6 +113,13 @@
                 <div class="col-md-12">
                     <h4><a href="{% url 'frontpage' %}">新潟大学 研究資金公募情報【試験運用中】</a></h4>
                 </div>
+            </div>
+            <div class="row my-4">
+                <div class="col-md-12">
+                    <div><a href="{% url 'grant:list' %}">民間助成財団等の公募情報</a></div>
+                    <div><a href="{% url 'erad:list' %}">政府系の競争的研究資金公募情報</a></div>
+                </div>
+
             </div>
             <hr>
             <div class="row my-4">

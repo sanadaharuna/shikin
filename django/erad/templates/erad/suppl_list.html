@@ -11,34 +11,8 @@
         </div>
     </div>
 
-    <form method="GET" action="" name="filter_form">
-        <div class="form-group border rounded p-3 mt-4">
-            <h2 class="h6">絞り込み</h2>
-            <div class="row">
-                <div class="col-md-6">
-                    {{ search_form.fa | as_crispy_field }}
-                </div>
-                <div class="col-md-6">
-                    {{ search_form.cfa | as_crispy_field }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    {{ search_form.closed | as_crispy_field }}
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">
-                <i class="fas fa-search"></i>
-                検索
-            </button>
-        </div>
-    </form>
     {% if object_list %}
-    <div class="alert alert-primary my-4">
-        検索結果：<span class="h2">{{ paginator.count | intcomma }}</span> 件
-    </div>
-    {% include "erad/_pagination.html" %}
-    <table id="sort-table" class="table table-hover">
+    <table class="table table-hover">
         <thead class="thead-light">
             <tr>
                 <th width=10%>公開日</th>
@@ -46,6 +20,7 @@
                 <th width=10%>応募単位</th>
                 <th width=10%>機関承認の有無</th>
                 <th width=10%>受付終了日</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -53,8 +28,7 @@
             <tr>
                 <td>{{ object.publishing_date | date:"Y-m-d" }}</td>
                 <td>
-                    <div><span class="badge badge-light">{{ object.category }}</span>
-                        <small class="text-muted">{{ object.funding_agency }}</small></div>
+                    <div><small class="text-muted">{{ object.funding_agency }}</small></div>
                     <div>
                         <a href="{{ object.url }}" target="_blank"
                             rel="noopener noreferrer">{{ object.call_for_applications }}
@@ -64,13 +38,14 @@
                 <td>{{ object.application_unit }}</td>
                 <td>{{ object.approved_institution }}</td>
                 <td>{{ object.closing_date }}</td>
+                <td>
+                    <a class="btn btn-sm btn-outline-primary" href="{% url 'erad:update' object.id %}">編集</a>
+                    <a class="btn btn-sm btn-outline-warning" href="{% url 'erad:delete' object.id %}">削除</a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-
-    {% include "erad/_pagination.html" %}
-
     {% else %}
     <p class="my-5">見つかりませんでした。</p>
     {% endif %}
