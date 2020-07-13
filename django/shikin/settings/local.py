@@ -1,6 +1,16 @@
 from .default import *
 
+SECRET_KEY="qaul-k)eiao^o%txhxw+(hz*im+yd+kyto$66qxztkc+$jb-3t"
 DEBUG = True
+ALLOWED_HOSTS="shikin.localhost"
+
+DATABASES = {
+    "default": {
+         'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        },
+    }
+}
 
 ALLOWED_HOSTS += ["127.0.0.1"]
 
