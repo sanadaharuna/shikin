@@ -43,7 +43,5 @@ class FundSpider(scrapy.Spider):
 
         next_page = response.css("div.btn_next a::attr(href)").extract_first()
         if next_page is not None:
-            # next_page = "https://www.e-rad.go.jp" + next_page
             next_page = response.urljoin(next_page)
-            # yield scrapy.FormRequest(next_page, callback=self.parse, method="POST", formdata=self.formdata)
             yield scrapy.Request(next_page, callback=self.parse)

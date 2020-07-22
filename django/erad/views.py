@@ -11,32 +11,23 @@ import datetime
 
 
 class ItemListView(ListView):
-    paginate_by = 100
+    paginate_by = 1000
     template_name = "erad/item_list.html"
 
     def get_queryset(self):
+        form = self.form = ItemSearchForm(self.request.GET or None)
+        # categoryを設定する
         erad = Erad.objects.annotate(category=Value('e-Rad', output_field=CharField()))
         suppl = Suppl.objects.annotate(category=Value('その他', output_field=CharField()))
-        form = self.form = ItemSearchForm(self.request.GET or None)
+        # 受付終了日前の案件を抽出する
+        erad = erad.filter(closing_date__gte=datetime.date.today())
+        suppl = suppl.filter(closing_date__gte=datetime.date.today())
+        # 配分機関のフィルタ条件を設定する
         if form.is_valid():
-            # search by funding_agency
             fa = form.cleaned_data.get("fa")
             if fa:
                 erad = erad.filter(funding_agency__contains=fa)
                 suppl = suppl.filter(funding_agency__contains=fa)
-            # search by call_for_applications
-            cfa = form.cleaned_data.get("cfa")
-            if cfa:
-                erad = erad.filter(call_for_applications__contains=cfa)
-                suppl = suppl.filter(call_for_applications__contains=cfa)
-            # switch before_closing_date
-            closed = form.cleaned_data.get("closed")
-            if not closed:
-                erad = erad.filter(closing_date__gte=datetime.date.today())
-                suppl = suppl.filter(closing_date__gte=datetime.date.today())
-        else:
-            erad = erad.filter(closing_date__gte=datetime.date.today())
-            suppl = suppl.filter(closing_date__gte=datetime.date.today())
         # eradとjspsを結合して公開日順にソート
         queryset = erad.union(suppl)
         queryset = queryset.order_by("publishing_date").reverse()

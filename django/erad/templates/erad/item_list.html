@@ -19,12 +19,6 @@
                     {{ search_form.fa | as_crispy_field }}
                 </div>
                 <div class="col-md-6">
-                    {{ search_form.cfa | as_crispy_field }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    {{ search_form.closed | as_crispy_field }}
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">
@@ -37,7 +31,6 @@
     <div class="alert alert-primary my-4">
         検索結果：<span class="h2">{{ paginator.count | intcomma }}</span> 件
     </div>
-    {% include "erad/_pagination.html" %}
     <table id="sort-table" class="table table-hover">
         <thead class="thead-light">
             <tr>
@@ -51,14 +44,15 @@
         <tbody>
             {% for object in object_list %}
             <tr>
-                <td>{{ object.publishing_date | date:"Y-m-d" }}</td>
+                <td>{{ object.publishing_date }}</td>
                 <td>
-                    <div><span class="badge badge-light">{{ object.category }}</span>
-                        <small class="text-muted">{{ object.funding_agency }}</small></div>
+                    <div><small class="text-muted">{{ object.funding_agency }}</small></div>
                     <div>
-                        <a href="{{ object.url }}" target="_blank"
-                            rel="noopener noreferrer">{{ object.call_for_applications }}
-                            <i class="fas fa-external-link-alt"></i></a>
+                        {{ object.call_for_applications }}
+                    </div>
+                    <div>
+                        <span class="badge badge-light">{{ object.category }}</span>
+                        <a href="{{ object.url }}" target="_blank" rel="noopener noreferrer">{{ object.url }}</a>
                     </div>
                 </td>
                 <td>{{ object.application_unit }}</td>
@@ -68,9 +62,6 @@
             {% endfor %}
         </tbody>
     </table>
-
-    {% include "erad/_pagination.html" %}
-
     {% else %}
     <p class="my-5">見つかりませんでした。</p>
     {% endif %}

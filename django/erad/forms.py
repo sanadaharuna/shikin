@@ -43,8 +43,6 @@ AI = (
 
 class ItemSearchForm(forms.Form):
     fa = forms.ChoiceField(label="配分機関", choices=FA, required=False)
-    cfa = forms.CharField(label="公募名", required=False)
-    closed = forms.BooleanField(label="受付終了済みを含む", required=False)
 
 
 class SupplForm(forms.ModelForm):
