@@ -29,14 +29,15 @@ class EradPipeline:
             item["closing_date"], "%Y/%m/%d")
         # item["closing_date"] = datetime.strptime(
         #     "".join([item["closing_date"], "+0900"]), "%Y/%m/%d")
-        item["url"] = "https://www.e-rad.go.jp" + \
-            item["url"].split(",")[0].split("'")[1]
-        item["erad_key"] = item["url"].split("/")[-2]
+        # item["url"] = "https://www.e-rad.go.jp" + \
+        #     item["url"].split(",")[0].split("'")[1]
+        # item["erad_key"] = item["url"].split("/")[-2]
 
         # DBへ登録
         session = self.Session()
         funddb = FundDatabase()
         funddb.erad_key = item["erad_key"]
+        funddb.erad_url = item["erad_url"]
         funddb.url = item["url"]
         funddb.publishing_date = item["publishing_date"]
         funddb.funding_agency = item["funding_agency"]
@@ -54,6 +55,7 @@ class EradPipeline:
             erad_item_table = Table(
                 'erad_erad', metadata,
                 Column("erad_key", String(7), primary_key=True),
+                Column("erad_url", String(200)),
                 Column("url", String(200)),
                 Column("publishing_date", Date()),
                 Column("funding_agency", String(200)),
@@ -66,6 +68,7 @@ class EradPipeline:
             # あとでupdated_atとcreated_at列を加える
             insert_stmt = insert(erad_item_table).values(
                 erad_key=item["erad_key"],
+                erad_url=item["erad_url"],
                 url=item["url"],
                 publishing_date=item["publishing_date"],
                 funding_agency=item["funding_agency"],
@@ -77,6 +80,7 @@ class EradPipeline:
             )
             on_duplicate_key_stmt = insert_stmt.on_duplicate_key_update(
                 erad_key=item["erad_key"],
+                erad_url=item["erad_url"],
                 url=item["url"],
                 publishing_date=item["publishing_date"],
                 funding_agency=item["funding_agency"],

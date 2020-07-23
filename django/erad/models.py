@@ -5,7 +5,8 @@ from django.db import models
 class Item(models.Model):
     erad_key = models.CharField(
         "e-Rad公募ID", max_length=7, unique=True, blank=True, null=True)
-    url = models.URLField("URL")
+    erad_url = models.URLField("e-Rad公募情報URL", blank=True, null=True)
+    url = models.URLField("URL", blank=True, null=True)
     publishing_date = models.DateField("公開日")
     funding_agency = models.CharField("配分機関", max_length=200)
     call_for_applications = models.CharField("公募名", max_length=200)

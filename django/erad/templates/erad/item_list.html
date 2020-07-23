@@ -51,8 +51,14 @@
                         {{ object.call_for_applications }}
                     </div>
                     <div>
-                        <span class="badge badge-light">{{ object.category }}</span>
-                        <a href="{{ object.url }}" target="_blank" rel="noopener noreferrer">{{ object.url }}</a>
+                        <span class="badge badge-light">e-Rad</span>
+                        <a href="{{ object.erad_url|default:'#' }}" target="_blank"
+                            rel="noopener noreferrer">{{ object.erad_url|default:'' }}</a>
+                    </div>
+                    <div>
+                        <span class="badge badge-light">その他</span>
+                        <a href="{{ object.url|default:'#' }}" target="_blank"
+                            rel="noopener noreferrer">{{ object.url|default:'' }}</a>
                     </div>
                 </td>
                 <td>{{ object.application_unit }}</td>

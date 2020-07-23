@@ -1,7 +1,9 @@
 from sqlalchemy import Column, Date, String, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 
-CONNECTON_STRING = "mysql+pymysql://root:3wf5qnPbnA7q@mysql:3306/shikin?charset=utf8"
+CONNECTON_STRING = "mysql+pymysql://{}:{}@{}:3306/{}?charset=utf8".format("root",
+                                                                          "3wf5qnPbnA7q", "mysql", "shikin")
+
 DeclarativeBase = declarative_base()
 
 
@@ -16,6 +18,7 @@ def create_table(engine):
 class FundDatabase(DeclarativeBase):
     __tablename__ = 'erad_erad'
     erad_key = Column(String(7), primary_key=True)
+    erad_url = Column(String(200))
     url = Column(String(200))
     publishing_date = Column(Date())
     funding_agency = Column(String(200))
