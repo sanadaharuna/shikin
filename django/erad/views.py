@@ -1,6 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models import CharField, Value
 from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -16,12 +15,9 @@ class ItemListView(ListView):
 
     def get_queryset(self):
         form = self.form = ItemSearchForm(self.request.GET or None)
-        # categoryを設定する
-        erad = Erad.objects.annotate(category=Value('e-Rad', output_field=CharField()))
-        suppl = Suppl.objects.annotate(category=Value('その他', output_field=CharField()))
         # 受付終了日前の案件を抽出する
-        erad = erad.filter(closing_date__gte=datetime.date.today())
-        suppl = suppl.filter(closing_date__gte=datetime.date.today())
+        erad = Erad.objects.filter(closing_date__gte=datetime.date.today())
+        suppl = Suppl.objects.filter(closing_date__gte=datetime.date.today())
         # 配分機関のフィルタ条件を設定する
         if form.is_valid():
             fa = form.cleaned_data.get("fa")

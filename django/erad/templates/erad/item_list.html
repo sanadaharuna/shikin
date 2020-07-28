@@ -7,7 +7,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col">
-            <h1 class="h2 my-3">政府系の競争的研究資金 一覧</h1>
+            <h1 class="h2 my-3">政府系の競争的研究資金公募情報</h1>
         </div>
     </div>
 
@@ -35,9 +35,9 @@
         <thead class="thead-light">
             <tr>
                 <th width=10%>公開日</th>
-                <th width=50%>配分機関・公募名</th>
+                <th width=50%>配分機関、公募名</th>
                 <th width=10%>応募単位</th>
-                <th width=10%>機関承認の有無</th>
+                <th width=10%>機関承認</th>
                 <th width=10%>受付終了日</th>
             </tr>
         </thead>
@@ -51,14 +51,12 @@
                         {{ object.call_for_applications }}
                     </div>
                     <div>
-                        <span class="badge badge-light">e-Rad</span>
-                        <a href="{{ object.erad_url|default:'#' }}" target="_blank"
-                            rel="noopener noreferrer">{{ object.erad_url|default:'' }}</a>
+                        <small><a href="{{ object.erad_url|default:'#' }}" target="_blank"
+                                rel="noopener noreferrer">{{ object.erad_url|default:'' }}</a></small>
                     </div>
                     <div>
-                        <span class="badge badge-light">その他</span>
-                        <a href="{{ object.url|default:'#' }}" target="_blank"
-                            rel="noopener noreferrer">{{ object.url|default:'' }}</a>
+                        <small><a href="{{ object.url|default:'#' }}" target="_blank"
+                                rel="noopener noreferrer">{{ object.url|default:'' }}</a></small>
                     </div>
                 </td>
                 <td>{{ object.application_unit }}</td>
