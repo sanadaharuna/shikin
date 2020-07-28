@@ -3,7 +3,7 @@ nginx/log/*
 .vscode
 *.env
 uwsgi.log
-django/shikin/settings/local.py
+local_settings.py
 .venv
 migrations
 .scrapy
