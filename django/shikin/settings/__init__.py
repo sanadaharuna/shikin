@@ -1,4 +1,4 @@
 try:
-    from .local import *
+    from .local_settings import *
 except ImportError:
     from .default import *

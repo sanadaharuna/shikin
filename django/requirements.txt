@@ -2,14 +2,14 @@ Django==2.2.13
 requests
 beautifulsoup4
 django-crispy-forms
-django-debug-toolbar
 django-bootstrap4
 django-bootstrap-datepicker-plus
 django-allauth
+mysqlclient
+uwsgi
 
 autopep8
 flake8
-
-# direct install on Dockerfile
-# mysqlclient==1.4.5
-# uwsgi==2.0.18
+black
+factory_boy
+django-debug-toolbar

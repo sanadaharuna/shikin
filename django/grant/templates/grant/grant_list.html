@@ -39,13 +39,11 @@
     <table class="table table-hover">
         <thead class="thead-light">
             <tr>
-                <th width=10%>整理番号</th>
                 <th width=10%>更新日</th>
-                <th width=40%>助成財団等の名称、公募名</th>
-                <th width=10%>本部による取りまとめ</th>
+                <th width=60%>助成財団等の名称、公募名</th>
                 <th width=20%>備考</th>
                 {% if request.user.is_authenticated %}
-                <th></th>
+                <th width=10%></th>
                 {% endif %}
             </tr>
         </thead>
@@ -53,24 +51,22 @@
             {% for grant in grant_list %}
             <tr>
                 <td>
-                    {{ grant.pk }}
-                </td>
-                <td>
                     {{ grant.accepted_at | date:"Y-m-d" }}
                 </td>
                 <td>
-                    <div>{{ grant.zaidanmei }}</div>
+                    <div><small class="text-muted">{{ grant.zaidanmei }}</small></div>
+                    <div>{{ grant.koubomei }}</div>
+                    {% if grant.url %}
                     <div>
-                        {% if grant.url %}
-                        <a href="{{ grant.url }}" target="_blank" rel="noopener noreferrer">{{ grant.koubomei }}
-                            <i class="fas fa-external-link-alt"></i></a>
-                        {% else %}
-                        {{ grant.koubomei }}
-                        {% endif %}
+                        <small><a href="{{ grant.url }}" target="_blank"
+                                rel="noopener noreferrer">{{ grant.url }}</a></small>
                     </div>
+                    {% endif %}
                 </td>
-                <td>{{ grant.get__display }}</td>
-                <td><small>{{ grant.bikou | linebreaksbr }}</small></td>
+                <td>
+                    <div>{{ grant.get_torimatome_display }}</div>
+                    <div>{{ grant.bikou|linebreaksbr }}</div>
+                </td>
                 {% if request.user.is_authenticated %}
                 <td>
                     <a class="btn btn-sm btn-outline-primary" href="{% url 'grant:update' grant.pk %}">編集</a>

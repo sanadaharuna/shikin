@@ -33,31 +33,6 @@ class GrantListView(ListView):
         return context
 
 
-class GrantExportView(View):
-    def get(self, request):
-        response = HttpResponse(content_type="text/csv; charset=cp932")
-        filename = "minkanzaidantou_export_" + datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-        response["Content-Disposition"] = "attachment; filename=" + \
-            filename + ".csv"
-        writer = csv.writer(response)
-        writer.writerow(["整理番号", "更新日", "財団等の名称", "公募名",
-                         "公募URL", "本部での取りまとめの有無", "備考"])
-        grant_list = Grant.objects.all().order_by("acceptance_date").reverse()
-
-        for grant in grant_list:
-            row = [
-                grant.id,
-                grant.accepted_at,
-                grant.zaidanmei,
-                grant.koubomei,
-                grant.url,
-                grant.torimatome,
-                grant.bikou,
-            ]
-            writer.writerow(row)
-        return response
-
-
 class GrantCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Grant
     form_class = GrantForm
@@ -76,3 +51,27 @@ class GrantDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Grant
     success_message = "削除しました。"
     success_url = reverse_lazy("grant:list")
+
+
+class GrantExportView(View):
+    def get(self, request):
+        response = HttpResponse(content_type="text/csv; charset=cp932")
+        filename = "zaidan_export_" + datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        response["Content-Disposition"] = "attachment; filename=" + \
+            filename + ".csv"
+        writer = csv.writer(response)
+        writer.writerow(["整理番号", "更新日", "財団等の名称", "公募名",
+                         "公募URL", "本部での取りまとめの有無", "備考"])
+        grant_list = Grant.objects.all().order_by("accepted_at").reverse()
+        for grant in grant_list:
+            row = [
+                grant.id,
+                grant.accepted_at,
+                grant.zaidanmei,
+                grant.koubomei,
+                grant.url,
+                grant.torimatome,
+                grant.bikou,
+            ]
+            writer.writerow(row)
+        return response
