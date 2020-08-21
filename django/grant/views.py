@@ -24,7 +24,8 @@ class GrantListView(ListView):
         if form.is_valid():
             q = form.cleaned_data.get("q")
             if q:
-                queryset = queryset.filter(Q(zaidanmei__contains=q) | Q(koubomei__contains=q))
+                queryset = queryset.filter(
+                    Q(zaidanmei__contains=q) | Q(koubomei__contains=q))
         return queryset
 
     def get_context_data(self, **kwargs):
@@ -56,7 +57,8 @@ class GrantDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 class GrantExportView(View):
     def get(self, request):
         response = HttpResponse(content_type="text/csv; charset=cp932")
-        filename = "zaidan_export_" + datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        now = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        filename = "zaidan_export_" + now
         response["Content-Disposition"] = "attachment; filename=" + \
             filename + ".csv"
         writer = csv.writer(response)

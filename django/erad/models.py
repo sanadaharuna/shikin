@@ -1,8 +1,7 @@
 from django.db import models
-# from django.utils import timezone
 
 
-class Item(models.Model):
+class Erad(models.Model):
     erad_key = models.CharField(
         "e-Rad公募ID", max_length=7, unique=True, blank=True, null=True)
     erad_url = models.URLField("e-Rad公募情報URL", blank=True, null=True)
@@ -15,23 +14,5 @@ class Item(models.Model):
     opening_date = models.DateField("受付開始日")
     closing_date = models.DateField("受付終了日")
 
-    class Meta:
-        abstract = True
-
-
-class Erad(Item):
-    pass
-
     def __str__(self):
         return self.funding_agency + "／" + self.call_for_applications
-
-
-class Suppl(Item):
-    pass
-
-    def __str__(self):
-        return self.funding_agency + "／" + self.call_for_applications
-
-    class Meta:
-        verbose_name = "e-Radに掲載されない政府系機関の公募情報"
-        verbose_name_plural = verbose_name

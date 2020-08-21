@@ -15,4 +15,4 @@ class GrantFactory(factory.django.DjangoModelFactory):
     url = factory.Faker("url")
     torimatome = factory.fuzzy.FuzzyChoice(
         Grant.ARRANGE, getter=lambda c: c[0])
-    bikou = factory.Faker("lorem")
+    bikou = factory.fuzzy.FuzzyText(length=100)

@@ -75,8 +75,7 @@
             {% if request.user.is_authenticated %}
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    Login ID : {{ request.user }} - <a href="{% url 'kanri' %}">管理</a> - <a
-                        href="/accounts/logout/">ログアウトする</a>
+                    Login ID : <strong>{{ request.user }}</strong> - <a href="/accounts/logout/">ログアウトする</a>
                 </li>
             </ul>
             {% endif %}

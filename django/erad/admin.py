@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from .models import Suppl
+from .models import Erad
 
 
-@admin.register(Suppl)
-class SupplAdmin(admin.ModelAdmin):
+@admin.register(Erad)
+class EradAdmin(admin.ModelAdmin):
     pass

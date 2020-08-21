@@ -10,7 +10,8 @@ from grant.models import Grant
 class GrantForm(forms.ModelForm):
     class Meta:
         model = Grant
-        fields = ["accepted_at", "zaidanmei", "koubomei", "url", "torimatome", "bikou"]
+        fields = ["accepted_at", "zaidanmei",
+                  "koubomei", "url", "torimatome", "bikou"]
         widgets = {"accepted_at": DatePickerInput(format='%Y-%m-%d')}
 
     def __init__(self, *args, **kwargs):
