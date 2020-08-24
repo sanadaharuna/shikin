@@ -69,11 +69,11 @@ class GrantExportView(View):
             row = [
                 grant.id,
                 grant.accepted_at,
-                grant.zaidanmei,
-                grant.koubomei,
+                grant.zaidanmei.encode("cp932", "ignore").decode("cp932"),
+                grant.koubomei.encode("cp932", "ignore").decode("cp932"),
                 grant.url,
                 grant.torimatome,
-                grant.bikou,
+                grant.bikou.encode("cp932", "ignore").decode("cp932"),
             ]
             writer.writerow(row)
         return response
