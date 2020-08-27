@@ -51,7 +51,8 @@
         <thead class="thead-light">
             <tr>
                 <th width=10%>更新日</th>
-                <th width=60%>助成財団等の名称、公募名</th>
+                <th width=50%>助成財団等の名称、公募名</th>
+                <th width=10%>研究推進課による取りまとめ</th>
                 <th width=20%>備考</th>
                 {% if request.user.is_authenticated %}
                 <th width=10%></th>
@@ -76,6 +77,8 @@
                 </td>
                 <td>
                     <div>{{ grant.get_torimatome_display }}</div>
+                </td>
+                <td>
                     <div>{{ grant.bikou|linebreaksbr }}</div>
                 </td>
                 {% if request.user.is_authenticated %}

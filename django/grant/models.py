@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Grant(models.Model):
-    ARRANGE = (("0", ""), ("1", "本部による取りまとめ有"))
+    ARRANGE = (("0", ""), ("1", "有"), ("2", "無"))
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     accepted_at = models.DateField("受付日")
