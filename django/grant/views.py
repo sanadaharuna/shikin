@@ -16,7 +16,7 @@ from grant.models import Grant
 class GrantListView(ListView):
     paginate_by = 100
     queryset = Grant.objects.all()
-    ordering = "-accepted_at"
+    ordering = ["-accepted_at", "-updated_at"]
 
     def get_queryset(self):
         queryset = super().get_queryset()
