@@ -1,1 +1,1 @@
-0 9,12,15 * * 1-5 cd /code/erad; python run_scrapy_crawl_fund.py
+0 5 * * 1-5 cd /code/erad; python run_scrapy_crawl_fund.py
