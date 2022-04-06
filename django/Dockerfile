@@ -10,6 +10,7 @@ RUN apk add --update --no-cache mariadb-connector-c-dev \
     gcc \
     musl-dev \
     build-base \
+    libffi-dev \
     linux-headers\
     && pip install -r requirements.txt \
     && apk del .build-deps \

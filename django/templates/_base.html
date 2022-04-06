@@ -69,7 +69,8 @@
                     <a class="nav-link" href="{% url 'grant:list' %}">民間助成財団等の公募情報</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'erad:list' %}">政府系の競争的研究資金公募情報</a>
+                    <!--<a class="nav-link" href="{% url 'erad:list' %}">政府系の競争的研究資金公募情報</a>-->
+                    <a class="nav-link" href="https://www.e-rad.go.jp/offer_list.html" target="_blank">政府系の競争的研究資金公募情報</a>
                 </li>
             </ul>
             {% if request.user.is_authenticated %}
@@ -116,7 +117,8 @@
             <div class="row my-4">
                 <div class="col-md-12">
                     <div><a href="{% url 'grant:list' %}">民間助成財団等の公募情報</a></div>
-                    <div><a href="{% url 'erad:list' %}">政府系の競争的研究資金公募情報</a></div>
+                    <!--<div><a href="{% url 'erad:list' %}">政府系の競争的研究資金公募情報</a></div>-->
+                    <div><a href="https://www.e-rad.go.jp/offer_list.html" target="_blank">政府系の競争的研究資金公募情報</a></div>
                 </div>
 
             </div>
