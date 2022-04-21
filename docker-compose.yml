@@ -27,15 +27,15 @@ services:
       TZ: Asia/Tokyo
     restart: always
 
-  scrapy:
-    build: ./scrapy
-    container_name: shikin_scrapy
-    tty: true
-    volumes:
-      - ./scrapy:/code
-    environment:
-      - ON_DOCKER=1
-    restart: always
+  # scrapy:
+  #   build: ./scrapy
+  #   container_name: shikin_scrapy
+  #   tty: true
+  #   volumes:
+  #     - ./scrapy:/code
+  #   environment:
+  #     - ON_DOCKER=1
+  #   restart: always
 
 networks:
   default:
